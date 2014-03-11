@@ -3,13 +3,18 @@
 //var creaturePos = this.transform.position;
 var moveFlag : int = 0;
 var loiter : int = 1;
-var cMoveSpeed : float = 0.2;
+var cMoveSpeed : float = 0.5;
 var DecisionTimer = 700;
 var Chance = 0;
 var disableAItime = 0; // Disables AI during input
+private var motor : CharacterMotor;
+private var cameraMotor : CharacterMotor;
+var autoRotate : boolean = true;
+var maxRotationSpeed : float = 360;
 
 function Start () {
-		
+		motor = GetComponent(CharacterMotor);
+		cameraMotor = camera.main.GetComponent(CharacterMotor);
 }
 
 function Update () {
@@ -73,14 +78,28 @@ function changeDirection(x){
 
 function moveRight()
 {
-	this.transform.position.x = this.transform.position.x + cMoveSpeed;
-	camera.main.transform.position.x = camera.main.transform.position.x + cMoveSpeed;
+	//Vector for movement to the right
+	var directionVector = new Vector3(cMoveSpeed, 0, 0);
+	//Manipulation of the vector to keep its motion straight on the terrain
+	directionVector = camera.main.transform.rotation * directionVector;
+	var camToCharacterSpace = Quaternion.FromToRotation(-camera.main.transform.forward, transform.up);
+	directionVector = (camToCharacterSpace * directionVector);
+	//Move the cube and the camera
+	motor.inputMoveDirection = directionVector;
+	cameraMotor.inputMoveDirection = new Vector3(cMoveSpeed, 0, 0);
 }
 
 function moveLeft()
 {
-	this.transform.position.x = this.transform.position.x - cMoveSpeed;
-	camera.main.transform.position.x = camera.main.transform.position.x - cMoveSpeed;
+	//Vector for movement to the left
+	var directionVector = new Vector3(-cMoveSpeed, 0, 0);
+	//Manipulation of the vector to keep its motion straight on the terrain
+	directionVector = camera.main.transform.rotation * directionVector;
+	var camToCharacterSpace = Quaternion.FromToRotation(-camera.main.transform.forward, transform.up);
+	directionVector = (camToCharacterSpace * directionVector);
+	//Move the cube and the camera
+	motor.inputMoveDirection = directionVector;
+	cameraMotor.inputMoveDirection = new Vector3(-cMoveSpeed, 0, 0);
 }
 
 function moveAway()
