@@ -18,11 +18,10 @@ function Update () {
 	if (Input.anyKeyDown)
 		{	disableAItime = 500; }
 		
-	//if(this.transform.position.y < 1) this.transform.position.y = this.transform.position.y + 1;
 		
 				// Moves the player to the right
 				if (this.transform.position.x < 25 ) {moveFlag = 1; }
-								else if (this.transform.position.x > 120 ){ moveFlag = 0; }
+								else if (this.transform.position.x > 200 ){ moveFlag = 0; }
 		
 		
 	// Puts AI on pause during input
