@@ -1,15 +1,14 @@
 ﻿#pragma strict
 
 //var creaturePos = this.transform.position;
-var moveFlag = 0;
-var loiter = 1;
-var MoveSpeed = .05;
+var moveFlag : int = 0;
+var loiter : int = 1;
+var cMoveSpeed : float = 0.2;
 var DecisionTimer = 700;
 var Chance = 0;
 var disableAItime = 0; // Disables AI during input
 
 function Start () {
-
 		
 }
 
@@ -19,7 +18,7 @@ function Update () {
 	if (Input.anyKeyDown)
 		{	disableAItime = 500; }
 		
-	if(this.transform.position.y < 1) this.transform.position.y = this.transform.position.y + 1;
+	//if(this.transform.position.y < 1) this.transform.position.y = this.transform.position.y + 1;
 		
 				// Moves the player to the right
 				if (this.transform.position.x < 25 ) {moveFlag = 1; }
@@ -75,21 +74,21 @@ function changeDirection(x){
 
 function moveRight()
 {
-	this.transform.position.x = this.transform.position.x + MoveSpeed;
-	camera.main.transform.position.x = camera.main.transform.position.x + MoveSpeed;
+	this.transform.position.x = this.transform.position.x + cMoveSpeed;
+	camera.main.transform.position.x = camera.main.transform.position.x + cMoveSpeed;
 }
 
 function moveLeft()
 {
-	this.transform.position.x = this.transform.position.x - MoveSpeed;
-	camera.main.transform.position.x = camera.main.transform.position.x - MoveSpeed;
+	this.transform.position.x = this.transform.position.x - cMoveSpeed;
+	camera.main.transform.position.x = camera.main.transform.position.x - cMoveSpeed;
 }
 
 function moveAway()
 {
-	this.transform.position.z = this.transform.position.z + MoveSpeed;
+	this.transform.position.z = this.transform.position.z + cMoveSpeed;
 }
 function moveToward()
 {
-	this.transform.position.z = this.transform.position.z - MoveSpeed;
+	this.transform.position.z = this.transform.position.z - cMoveSpeed;
 }
