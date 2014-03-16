@@ -14,7 +14,7 @@ var maxRotationSpeed : float = 360;
 
 // AI State Logic
 enum AIState { Asleep, Idling, Loiting, Walking, Running, Sitting, Chasing, Fleeing, HavingLunch };
-var CurrentState = null;
+public var CurrentState = null;
 
 function Start () {
 		motor = GetComponent(CharacterMotor);
@@ -28,8 +28,8 @@ function Update () {
 		{	disableAItime = 500; }
 				
 				// AI Movement Bounderies
-				if (this.transform.position.x < 25 ) {moveFlag = 1; }
-								else if (this.transform.position.x > 200 ){ moveFlag = 0; }
+				if (this.transform.position.x < 245 ) {moveFlag = 1; }
+								else if (this.transform.position.x > 1530 ){ moveFlag = 0; }
 			
 	// Puts AI on pause during input
 	if (disableAItime == 0){
@@ -91,7 +91,7 @@ function moveRight()
 	directionVector = (camToCharacterSpace * directionVector);
 	//Move the cube and the camera
 	motor.inputMoveDirection = directionVector;
-	cameraMotor.inputMoveDirection = new Vector3(cMoveSpeed, 0, 0);
+	//cameraMotor.inputMoveDirection = new Vector3(cMoveSpeed, 0, 0);
 }
 
 function moveLeft()
@@ -104,7 +104,7 @@ function moveLeft()
 	directionVector = (camToCharacterSpace * directionVector);
 	//Move the cube and the camera
 	motor.inputMoveDirection = directionVector;
-	cameraMotor.inputMoveDirection = new Vector3(-cMoveSpeed, 0, 0);
+	//cameraMotor.inputMoveDirection = new Vector3(-cMoveSpeed, 0, 0);
 }
 
 // Functions NOT in Use at the moment
