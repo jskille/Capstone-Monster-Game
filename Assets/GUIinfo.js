@@ -36,7 +36,10 @@ function OnGUI() {
 		if (GUI.Button(Rect(400, 0, 100, 50), "Mini-game 4")){
 			print("Go to Minigame 4");
 		}
-		if (GUI.Button(Rect(500, 0, 100, 50), "Multiplayer")){
+		if (GUI.Button(Rect(500, 0, 100, 50), "Creature Shop")){
+			print("Creature Shop");
+		}
+		if (GUI.Button(Rect(600, 0, 100, 50), "Multiplayer")){
 			print("Go to Multiplayer");
 		}
 	}
