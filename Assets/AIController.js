@@ -1,6 +1,5 @@
 ﻿#pragma strict
 
-
 var moveFlag : int = 0;
 var loiter : int = 1;
 var cMoveSpeed : float = 0.5;
@@ -11,6 +10,12 @@ private var motor : CharacterMotor;
 private var cameraMotor : CharacterMotor;
 var autoRotate : boolean = true;
 var maxRotationSpeed : float = 360;
+
+//Statuses
+var hungry : boolean = true;
+var thirsty : boolean = true;
+var bored : boolean = true;
+
 
 // AI State Logic
 enum AIState { Asleep, Idling, Loiting, Walking, Running, Sitting, Chasing, Fleeing, HavingLunch };
