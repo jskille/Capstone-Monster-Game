@@ -24,7 +24,7 @@ function Start () {
 function Update () {
 		 				
 	// Puts AI on pause			
-	if (Input.anyKey)
+	if (Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
 		{	disableAItime = 500; }
 				
 				// AI Movement Bounderies
