@@ -30,11 +30,11 @@ function Update () {
 		 				
 	// Puts AI on pause			
 	if (Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
-		{	disableAItime = 500; }
+		{	disableAItime = 450; }
 				
 				// AI Movement Bounderies
-				if (this.transform.position.x < 245 ) {moveFlag = 1; }
-								else if (this.transform.position.x > 1530 ){ moveFlag = 0; }
+				if (this.transform.position.x < 200 ) {moveFlag = 1; }
+								else if (this.transform.position.x > 1730 ){ moveFlag = 0; }
 			
 	// Puts AI on pause during input
 	if (disableAItime == 0){
@@ -56,7 +56,7 @@ function AIControlCenter (){
 													
 													if (Chance > 85) changeDirection(moveFlag);
 													
-													DecisionTimer = 500; //Resets the timer for next decision		
+													DecisionTimer = 450; //Resets the timer for next decision		
 							}
 													
 							/*** AI Logic State Chance ***/
