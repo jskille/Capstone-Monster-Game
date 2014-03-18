@@ -582,6 +582,8 @@ function SetVelocity (velocity : Vector3) {
 	SendMessage("OnExternalVelocity");
 }
 
+
+
 // Require a character controller to be attached to the same game object
 @script RequireComponent (CharacterController)
 @script AddComponentMenu ("Character/Character Motor")

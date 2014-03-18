@@ -11,14 +11,21 @@ private var cameraMotor : CharacterMotor;
 var autoRotate : boolean = true;
 var maxRotationSpeed : float = 360;
 
+// Status Levels
+var happyMAX : float = 100;
+var happyCurrent : float = 100;
+var stomachMAX : float = 100;
+var stomachCurrent : float = 100;
+
+
 //Statuses
-var hungry : boolean = true;
-var thirsty : boolean = true;
-var bored : boolean = true;
+var hungry : boolean = false;
+var thirsty : boolean = false;
+var bored : boolean = false;
 
 
 // AI State Logic
-enum AIState { Asleep, Idling, Loiting, Walking, Running, Sitting, Chasing, Fleeing, HavingLunch };
+enum AIState { Asleep, Idling, Loiting, Walking, Running, Sitting, Chasing, Fleeing, HavingLunch, Playing };
 public var CurrentState = null;
 
 function Start () {
@@ -31,6 +38,8 @@ function Update () {
 	// Puts AI on pause			
 	if (Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
 		{	disableAItime = 450; }
+		
+		StatusController();
 				
 				// AI Movement Bounderies
 				if (this.transform.position.x < 200 ) {moveFlag = 1; }
@@ -74,12 +83,22 @@ function AIControlCenter (){
 							DecisionTimer--; // Forces creature to make a decision
 
 } // End AIControlCenter
+function StatusController () {
+
+		happyCurrent -= .7 * Time.deltaTime;
+		stomachCurrent -= .4 * Time.deltaTime;
+}
+
 function AIChoice (x : float,y : float) {
 		
 		// Current minor implementation, will expand later
 		return Random.Range(x,y);
 	
 } // End AIChoice
+function PlayWithBall(){
+		
+		
+}
 
 function changeDirection(x){
 				if ( x == 1) moveFlag = 0;
@@ -120,4 +139,12 @@ function moveAway()
 function moveToward()
 {
 	this.transform.position.z = this.transform.position.z - cMoveSpeed;
+}
+
+// GUI Functionality
+function OnGUI() {
+			
+			GUI.Box(new Rect(Screen.width-Screen.width/8,10,Screen.width/8,20),"Happiness:"+ Mathf.FloorToInt(happyCurrent) +"/"+happyMAX);
+			GUI.Box(new Rect(Screen.width-Screen.width/8,30,Screen.width/8,20),"Stomach:"+ Mathf.FloorToInt(stomachCurrent) +"/"+stomachMAX);
+			
 }
