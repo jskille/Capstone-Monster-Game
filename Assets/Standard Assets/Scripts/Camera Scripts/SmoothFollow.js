@@ -42,7 +42,7 @@ function LateUpdate () {
 	currentHeight = Mathf.Lerp (currentHeight, wantedHeight, heightDamping * Time.deltaTime);
 
 	// Convert the angle into a rotation
-	var currentRotation = Quaternion.Euler (0, currentRotationAngle, 0);
+	var currentRotation = Quaternion.Euler (0, currentRotationAngle , 0);
 	
 	// Set the position of the camera on the x-z plane to:
 	// distance meters behind the target

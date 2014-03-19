@@ -2,7 +2,7 @@
 
 var moveFlag : int = 0;
 var loiter : int = 1;
-var cMoveSpeed : float = 0.5;
+var cMoveSpeed : float = 0.7;
 var DecisionTimer = 700;
 var Chance : float = 0;
 var disableAItime = 0; // Disables AI during input
@@ -37,7 +37,7 @@ function Update () {
 		 				
 	// Puts AI on pause			
 	if (Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
-		{	disableAItime = 450; }
+		{	disableAItime = 450; DecisionTimer = 5; }
 		
 		StatusController();
 				
@@ -85,8 +85,8 @@ function AIControlCenter (){
 } // End AIControlCenter
 function StatusController () {
 
-		happyCurrent -= .7 * Time.deltaTime;
-		stomachCurrent -= .4 * Time.deltaTime;
+		if(happyCurrent > 0) happyCurrent -= .7 * Time.deltaTime; else happyCurrent = 0;
+		if(stomachCurrent > 0) stomachCurrent -= .4 * Time.deltaTime; else stomachCurrent = 0;
 }
 
 function AIChoice (x : float,y : float) {
