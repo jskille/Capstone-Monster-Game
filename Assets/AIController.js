@@ -11,6 +11,8 @@ private var cameraMotor : CharacterMotor;
 var autoRotate : boolean = true;
 var maxRotationSpeed : float = 360;
 
+var playBonus :float = 3;
+
 // Status Levels
 var happyMAX : float = 100;
 var happyCurrent : float = 100;
@@ -147,4 +149,23 @@ function OnGUI() {
 			GUI.Box(new Rect(Screen.width-Screen.width/8,10,Screen.width/8,20),"Happiness:"+ Mathf.FloorToInt(happyCurrent) +"/"+happyMAX);
 			GUI.Box(new Rect(Screen.width-Screen.width/8,30,Screen.width/8,20),"Stomach:"+ Mathf.FloorToInt(stomachCurrent) +"/"+stomachMAX);
 			
+}
+
+//Happiness Increase
+function OnControllerColliderHit (hit : ControllerColliderHit)
+{
+	var body : Rigidbody = hit.collider.attachedRigidbody;
+     
+    // no rigidbody
+    if (body == null || body.isKinematic) { return; }
+    
+    if (body.name == "Ball(Clone)")
+    {
+   		while (happyCurrent + playBonus > 100)
+   		{
+   			playBonus--;
+   		}
+   		happyCurrent += playBonus;
+   		playBonus = 2;
+   	}
 }
