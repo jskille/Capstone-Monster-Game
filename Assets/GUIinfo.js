@@ -2,14 +2,18 @@
 
 var showPlaces : boolean;
 var creatureActions : boolean;
+var playMenu : boolean;
 private var AIControl : AIController;
+private var Ball : createBall;
 var hungryOffset : float;
 var thirstyOffset : float;
 
 function Start () {
 	showPlaces = false;
 	creatureActions = false;
+	playMenu = false;
 	AIControl = GetComponent(AIController);
+	Ball = GetComponent(createBall);
 }
 
 function OnGUI() {
@@ -44,13 +48,13 @@ function OnGUI() {
 		}
 	}
 	
-	if(!creatureActions)
+	if((!creatureActions) && (!playMenu))
 	{
 		if(GUI.Button(Rect(0, Screen.height-50, 100, 50), "Show Actions")){
 			creatureActions = true;
 		}
 	}
-	else
+	else if (!playMenu)
 	{
 		if(GUI.Button(Rect(0, Screen.height-50, 100, 50), "Hide Actions")){
 			creatureActions = false;
@@ -64,8 +68,18 @@ function OnGUI() {
 			AIControl.thirsty = false;
 		}
 		if(GUI.Button(Rect(300, Screen.height-50, 150,50), "Play with Creature")){
-			print("Creature played with");
-			AIControl.bored = false;
+			playMenu = true;
+			//AIControl.bored = false;
+		}
+	}
+	else
+	{
+		if (GUI.Button(Rect(0, Screen.height-50, 100, 50), "Back to Actions")){
+			playMenu = false;
+		}
+		if (GUI.Button(Rect(100, Screen.height-50, 100, 50), "Ball")){
+			playMenu = false;
+			Ball.makeBall(this.transform.position.x+10, this.transform.position.y, this.transform.position.z);
 		}
 	}
 	
