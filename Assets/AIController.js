@@ -11,7 +11,8 @@ private var cameraMotor : CharacterMotor;
 var autoRotate : boolean = true;
 var maxRotationSpeed : float = 360;
 
-var playBonus :float = 3;
+var playBonus : float = 3;
+var foodBonus : float = 20;
 
 // Status Levels
 var happyMAX : float = 100;
@@ -180,5 +181,15 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
    		}
    		happyCurrent += playBonus;
    		playBonus = 2;
+   	}
+   	else if (body.name == "Pizza(Clone)")
+   	{
+   		while (stomachCurrent + foodBonus >= 100)
+   		{
+   			foodBonus--;
+   		}
+   		stomachCurrent += foodBonus;
+   		foodBonus = 20;
+   		Destroy(hit.gameObject);
    	}
 }

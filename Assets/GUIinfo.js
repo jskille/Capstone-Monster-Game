@@ -3,8 +3,10 @@
 var showPlaces : boolean;
 var creatureActions : boolean;
 var playMenu : boolean;
+var foodMenu : boolean;
 private var AIControl : AIController;
 private var Ball : createBall;
+private var Pizza : createPizza;
 var hungryOffset : float;
 var thirstyOffset : float;
 
@@ -14,8 +16,10 @@ function Start () {
 	showPlaces = false;
 	creatureActions = false;
 	playMenu = false;
+	foodMenu = false;
 	AIControl = GetComponent(AIController);
 	Ball = GetComponent(createBall);
+	Pizza = GetComponent(createPizza);
 }
 
 function OnGUI() {
@@ -50,20 +54,20 @@ function OnGUI() {
 		}
 	}
 	
-	if((!creatureActions) && (!playMenu))
+	if((!creatureActions) && (!playMenu) && (!foodMenu))
 	{
 		if(GUI.Button(Rect(0, Screen.height-30, 100, ButtonHeight - 10), "Show Actions")){
 			creatureActions = true;
 		}
 	}
-	else if (!playMenu)
+	else if ((!playMenu) && (!foodMenu))
 	{
 		if(GUI.Button(Rect(0, Screen.height-30, 100, ButtonHeight), "Hide Actions")){
 			creatureActions = false;
 		}
 		if(GUI.Button(Rect(100, Screen.height-30, 100, ButtonHeight), "Feed Creature")){
-			print("Fed Creature");
-			AIControl.hungry = false;
+			foodMenu = true;
+			//AIControl.hungry = false;
 		}
 		if(GUI.Button(Rect(200, Screen.height-30, 100, ButtonHeight), "Get Water")){
 			print("Creature got drink");
@@ -74,7 +78,7 @@ function OnGUI() {
 			//AIControl.bored = false;
 		}
 	}
-	else
+	else if (!foodMenu)
 	{
 		if (GUI.Button(Rect(0, Screen.height-30, 100, ButtonHeight), "Back to Actions")){
 			playMenu = false;
@@ -82,7 +86,16 @@ function OnGUI() {
 		if (GUI.Button(Rect(100, Screen.height-30, 100, ButtonHeight), "Ball")){
 			playMenu = false;
 			Ball.makeBall(this.transform.position.x, this.transform.position.y+25, this.transform.position.z);
-			
+		}
+	}
+	else
+	{
+		if (GUI.Button(Rect(0, Screen.height-30, 100, ButtonHeight), "Back to Actions")){
+			foodMenu = false;
+		}
+		if (GUI.Button(Rect(100, Screen.height-30, 100, ButtonHeight), "Pizza")){
+			foodMenu = false;
+			Pizza.makePizza(this.transform.position.x+15, this.transform.position.y+15, this.transform.position.z-23);
 		}
 	}
 	
