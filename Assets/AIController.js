@@ -3,7 +3,7 @@
 var moveFlag : int = 0;
 var loiter : int = 1;
 var cMoveSpeed : float = 0.7;
-var DecisionTimer = 700;
+var DecisionTimer = 550;
 var Chance : float = 0;
 var disableAItime = 0; // Disables AI during input
 private var motor : CharacterMotor;
@@ -27,7 +27,7 @@ var bored : boolean = false;
 
 
 // AI State Logic
-enum AIState { Asleep, Idling, Loiting, Walking, Running, Sitting, Chasing, Fleeing, HavingLunch, Playing };
+enum AIState { Asleep, Idling, Loiting, Walking, Running, Sitting, Chasing, Fleeing, HavingLunch, Playing, Disabled };
 public var CurrentState = null;
 
 function Start () {
@@ -39,13 +39,13 @@ function Update () {
 		 				
 	// Puts AI on pause			
 	if (Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
-		{	disableAItime = 450; DecisionTimer = 5; }
+		{	disableAItime = 450; DecisionTimer = 5; CurrentState = AIState.Disabled; }
 		
 		StatusController();
 				
 				// AI Movement Bounderies
 				if (this.transform.position.x < 200 ) {moveFlag = 1; }
-								else if (this.transform.position.x > 1730 ){ moveFlag = 0; }
+								else if (this.transform.position.x > 1830 ){ moveFlag = 0; }
 			
 	// Puts AI on pause during input
 	if (disableAItime == 0){
@@ -58,16 +58,21 @@ function Update () {
 }
 //////////////////////////////////////////////////////////////////
 function AIControlCenter (){
-
+							
 							// AI Logic Must GO HERE		
 							if ( DecisionTimer == 0) {										
 													// AI Makes a Choice//
 													//////////////////////
+													
+													// Decides how long til the cube has to make a new choice
+													var timeToNextDecision = AIChoice(220,400);
+													
+													// Decides what the cube will do next
 													Chance = AIChoice(1,100);
 													
 													if (Chance > 85) changeDirection(moveFlag);
 													
-													DecisionTimer = 450; //Resets the timer for next decision		
+													DecisionTimer = timeToNextDecision; //Resets the timer for next decision		
 							}
 													
 							/*** AI Logic State Chance ***/
@@ -87,8 +92,8 @@ function AIControlCenter (){
 } // End AIControlCenter
 function StatusController () {
 
-		if(happyCurrent > 0) happyCurrent -= .7 * Time.deltaTime; else happyCurrent = 0;
-		if(stomachCurrent > 0) stomachCurrent -= .4 * Time.deltaTime; else stomachCurrent = 0;
+		if(happyCurrent > 0) happyCurrent -= .67 * Time.deltaTime; else happyCurrent = 0;
+		if(stomachCurrent > 0) stomachCurrent -= .44 * Time.deltaTime; else stomachCurrent = 0;
 }
 
 function AIChoice (x : float,y : float) {
@@ -146,8 +151,16 @@ function moveToward()
 // GUI Functionality
 function OnGUI() {
 			
-			GUI.Box(new Rect(Screen.width-Screen.width/8,10,Screen.width/8,20),"Happiness:"+ Mathf.FloorToInt(happyCurrent) +"/"+happyMAX);
-			GUI.Box(new Rect(Screen.width-Screen.width/8,30,Screen.width/8,20),"Stomach:"+ Mathf.FloorToInt(stomachCurrent) +"/"+stomachMAX);
+			
+			
+			GUI.Box(new Rect(Screen.width-Screen.width/8,10,140,40),"Happiness: "+ Mathf.CeilToInt(happyCurrent) +"/"+happyMAX+
+																"\n Stuffed: "+ Mathf.CeilToInt(stomachCurrent) +"/"+stomachMAX);	
+			
+			//Debug GUI
+			GUI.Box(new Rect(Screen.width-Screen.width/8,60,140,80),"AI DEBUG "+
+																"\n AIState: "+ CurrentState +
+																"\n LastChoice: "+ Chance +
+																"\n NextChoice: "+ DecisionTimer);
 			
 }
 
@@ -161,7 +174,7 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
     
     if (body.name == "Ball(Clone)")
     {
-   		while (happyCurrent + playBonus > 100)
+   		while (happyCurrent + playBonus >= 100)
    		{
    			playBonus--;
    		}
