@@ -1,13 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AIController.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Sounds\playSoundOnCollide.js">
     <Files>
-      <File FileName="Assets\AIController.js" Line="68" Column="50" />
+      <File FileName="Assets\Sounds\playSoundOnCollide.js" Line="18" Column="44" />
+      <File FileName="Assets\Sounds\playSoundOnCollide.js" Line="20" Column="6" />
+      <File FileName="Assets\AIController.js" Line="1" Column="1" />
       <File FileName="Assets\GUIinfo.js" Line="1" Column="1" />
-      <File FileName="Assets\AIController.js" Line="185" Column="1" />
       <File FileName="Assets\ImpactRecieve.js" Line="1" Column="1" />
       <File FileName="Assets\createBall.js" Line="1" Column="1" />
-      <File FileName="Assets\Sounds\playSoundOnCollide.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
