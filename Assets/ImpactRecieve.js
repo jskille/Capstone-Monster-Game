@@ -1,8 +1,8 @@
 ﻿#pragma strict
 
         // this script pushes all rigidbodies that the character touches
-    var pushPower = 18.0;
-    var vertPush : float = .35;
+    var pushPower = 22.0;
+    var vertPush : float = .4;
      
     function OnControllerColliderHit (hit : ControllerColliderHit)
     {
