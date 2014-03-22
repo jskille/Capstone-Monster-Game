@@ -66,6 +66,10 @@
      <Compile Include="Assets\SunOrbit.js" />
      <Compile Include="Assets\createBall.js" />
      <Compile Include="Assets\createPizza.js" />
+     <Compile Include="Assets\disappearReappear.js" />
+     <Compile Include="Assets\move2Locations.js" />
+     <Compile Include="Assets\moveUpDown.js" />
+     <Compile Include="Assets\rotateItem.js" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />
      <None Include="Assets\Standard Assets\Toon Shading\Sources\Shaders\Toony-Basic.shader" />
