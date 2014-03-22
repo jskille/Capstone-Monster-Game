@@ -34,17 +34,18 @@ function OnGUI() {
 		if(GUI.Button(Rect(0, 0, 100, ButtonHeight), "Hide Places")){
 			showPlaces = false;
 		}
-		if (GUI.Button(Rect(100,0,100,ButtonHeight), "Mini-game 1")){
-			print("Go to Minigame 1");
+		if (GUI.Button(Rect(100,0,100,ButtonHeight), "Platformer")){
+			print("Go to Platformer");
 		}
-		if (GUI.Button(Rect(200, 0, 100, ButtonHeight), "Mini-game 2")){
-			print("Go to Minigame 2");
+		if (GUI.Button(Rect(200, 0, 100, ButtonHeight), "Memory Game")){
+			print("Go to Memory Game");
 		}
-		if (GUI.Button(Rect(300, 0, 100, ButtonHeight), "Mini-game 3")){
-			print("Go to Minigame 3");
+		if (GUI.Button(Rect(300, 0, 100, ButtonHeight), "Missile Cmd")){
+			print("Go to Missile Command");
 		}
-		if (GUI.Button(Rect(400, 0, 100, ButtonHeight), "Mini-game 4")){
-			print("Go to Minigame 4");
+		if (GUI.Button(Rect(400, 0, 100, ButtonHeight), "Jump Game")){
+			print("Go to Don't Touch the Water Game");
+			Application.LoadLevel(1);
 		}
 		if (GUI.Button(Rect(500, 0, 100, ButtonHeight), "Creature Shop")){
 			print("Creature Shop");
