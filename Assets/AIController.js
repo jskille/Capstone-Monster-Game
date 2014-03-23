@@ -37,6 +37,10 @@ function Start () {
 }
 
 function Update () {
+
+	// QUICK Z Distance Variables
+	if (this.transform.position.z > 48) this.transform.position.z = 48;
+	if (this.transform.position.z < 30) this.transform.position.z = 30;
 		 				
 	// Puts AI on pause			
 	if (Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
@@ -115,28 +119,21 @@ function changeDirection(x){
 
 function moveRight()
 {
+
 	//Vector for movement to the right
 	var directionVector = new Vector3(cMoveSpeed, 0, 0);
-	//Manipulation of the vector to keep its motion straight on the terrain
-	directionVector = camera.main.transform.rotation * directionVector;
-	var camToCharacterSpace = Quaternion.FromToRotation(-camera.main.transform.forward, transform.up);
-	directionVector = (camToCharacterSpace * directionVector);
-	//Move the cube and the camera
+	//Move the cube
 	motor.inputMoveDirection = directionVector;
-	//cameraMotor.inputMoveDirection = new Vector3(cMoveSpeed, 0, 0);
+
 }
 
 function moveLeft()
 {
 	//Vector for movement to the left
 	var directionVector = new Vector3(-cMoveSpeed, 0, 0);
-	//Manipulation of the vector to keep its motion straight on the terrain
-	directionVector = camera.main.transform.rotation * directionVector;
-	var camToCharacterSpace = Quaternion.FromToRotation(-camera.main.transform.forward, transform.up);
-	directionVector = (camToCharacterSpace * directionVector);
-	//Move the cube and the camera
+	//Move the cube
 	motor.inputMoveDirection = directionVector;
-	//cameraMotor.inputMoveDirection = new Vector3(-cMoveSpeed, 0, 0);
+
 }
 
 // Functions NOT in Use at the moment
@@ -151,9 +148,7 @@ function moveToward()
 
 // GUI Functionality
 function OnGUI() {
-			
-			
-			
+				
 			GUI.Box(new Rect(Screen.width-Screen.width/8,10,140,40),"Happiness: "+ Mathf.CeilToInt(happyCurrent) +"/"+happyMAX+
 																"\n Stuffed: "+ Mathf.CeilToInt(stomachCurrent) +"/"+stomachMAX);	
 			
@@ -161,8 +156,7 @@ function OnGUI() {
 			GUI.Box(new Rect(Screen.width-Screen.width/8,60,140,80),"AI DEBUG "+
 																"\n AIState: "+ CurrentState +
 																"\n LastChoice: "+ Chance +
-																"\n NextChoice: "+ DecisionTimer);
-			
+																"\n NextChoice: "+ DecisionTimer);		
 }
 
 //Happiness Increase

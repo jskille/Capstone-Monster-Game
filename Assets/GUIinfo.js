@@ -34,14 +34,18 @@ function OnGUI() {
 		if(GUI.Button(Rect(0, 0, 100, ButtonHeight), "Hide Places")){
 			showPlaces = false;
 		}
-		if (GUI.Button(Rect(100,0,100,ButtonHeight), "Platformer")){
-			print("Go to Platformer");
+		if (GUI.Button(Rect(100,0,100,ButtonHeight), "Home")){
+			//print("Go to Platformer");
+			Application.LoadLevel("mainscreen");
 		}
 		if (GUI.Button(Rect(200, 0, 100, ButtonHeight), "Memory Game")){
 			print("Go to Memory Game");
 		}
-		if (GUI.Button(Rect(300, 0, 100, ButtonHeight), "Missile Cmd")){
-			print("Go to Missile Command");
+		if (GUI.Button(Rect(300, 0, 100, ButtonHeight), "Bowling")){
+			//print("Go to Missile Command");
+			Application.LoadLevel("bowlinggame");
+			//Application.LoadLevelAdditive("bowlinggame");
+			//this.transform.position.y = 505;
 		}
 		if (GUI.Button(Rect(400, 0, 100, ButtonHeight), "Jump Game")){
 			print("Go to Don't Touch the Water Game");
@@ -86,7 +90,7 @@ function OnGUI() {
 		}
 		if (GUI.Button(Rect(100, Screen.height-30, 100, ButtonHeight), "Ball")){
 			playMenu = false;
-			Ball.makeBall(this.transform.position.x, this.transform.position.y+25, this.transform.position.z);
+			Ball.makeBall(this.transform.position.x+10, this.transform.position.y+25, this.transform.position.z);
 		}
 	}
 	else

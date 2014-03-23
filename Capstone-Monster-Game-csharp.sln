@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{11674D50-E9AE-3DB3-504C-D0B04C40AA0A}") = "Capstone-Monster-Game", "Assembly-CSharp-firstpass-vs.csproj", "{60A19AD3-C679-B64B-C173-268249337BCE}"
 EndProject
+Project("{11674D50-E9AE-3DB3-504C-D0B04C40AA0A}") = "Capstone-Monster-Game", "Assembly-CSharp-vs.csproj", "{B166679C-9733-C5D1-5C07-E35FDDA447B0}"
+EndProject
+Project("{11674D50-E9AE-3DB3-504C-D0B04C40AA0A}") = "Capstone-Monster-Game", "Assembly-CSharp-Editor-vs.csproj", "{EB1DDE0D-4BD8-C8F1-9E25-67A87AB0C6E1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +17,19 @@ Global
 		{60A19AD3-C679-B64B-C173-268249337BCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60A19AD3-C679-B64B-C173-268249337BCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{60A19AD3-C679-B64B-C173-268249337BCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B166679C-9733-C5D1-5C07-E35FDDA447B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B166679C-9733-C5D1-5C07-E35FDDA447B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B166679C-9733-C5D1-5C07-E35FDDA447B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B166679C-9733-C5D1-5C07-E35FDDA447B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB1DDE0D-4BD8-C8F1-9E25-67A87AB0C6E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB1DDE0D-4BD8-C8F1-9E25-67A87AB0C6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB1DDE0D-4BD8-C8F1-9E25-67A87AB0C6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB1DDE0D-4BD8-C8F1-9E25-67A87AB0C6E1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																	GlobalSection(MonoDevelopProperties) = preSolution
+																																																										GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																																																					GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> 20b3cbd79c5c7fe5f6570c5bd282bfdcaa5f0c06

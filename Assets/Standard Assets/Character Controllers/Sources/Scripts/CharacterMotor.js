@@ -334,10 +334,7 @@ function FixedUpdate () {
 function Update () {
 	if (!useFixedUpdate)
 		UpdateFunction();
-		
-	// QUICK Z Distance Variables
-	if (this.transform.position.z > 48) this.transform.position.z = 48;
-	if (this.transform.position.z < 30) this.transform.position.z = 30;
+
 }
 
 private function ApplyInputVelocityChange (velocity : Vector3) {	

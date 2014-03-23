@@ -1,13 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\BowlingGame.js">
     <Files>
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js" Line="339" Column="68" />
-      <File FileName="Assets\ImpactRecieve.js" Line="1" Column="1" />
-      <File FileName="Assets\Sounds\playSoundOnCollide.js" Line="1" Column="1" />
-      <File FileName="Assets\AIController.js" Line="1" Column="1" />
-      <File FileName="Assets\GUIinfo.js" Line="1" Column="1" />
-      <File FileName="Assets\createBall.js" Line="1" Column="1" />
+      <File FileName="Assets\ImpactRecieve.js" Line="7" Column="1" />
+      <File FileName="Assets\AIController.js" Line="43" Column="69" />
+      <File FileName="Assets\BowlingGame.js" Line="21" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
