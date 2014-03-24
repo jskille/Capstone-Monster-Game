@@ -1,8 +1,10 @@
 ﻿#pragma strict
 
 private var Ball : createBall;
+private var Cam;
 var ButtonHeight : int = 30;
 Ball = GetComponent(createBall);
+var targetObj: Transform;
 
 function Start () {
 
@@ -27,10 +29,12 @@ function OnGUI()
 function OnControllerColliderHit (hit : ControllerColliderHit)
 {
 
-    
         			var pushPower1 = 200.0;
+        			var myForce = 10;
 				    var body1 : Rigidbody = hit.collider.attachedRigidbody;
-				     
+				    
+				    //targetScript.target(hit);
+				    
 				    // no rigidbody
 				    if (body1 == null || body1.isKinematic) { return; }
 				     
@@ -46,7 +50,7 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
 				     
 				    // Apply the push
 				    body1.velocity = pushDir1 * pushPower1;
-    
-    
+
 }
+
     

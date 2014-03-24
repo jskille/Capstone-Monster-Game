@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AIController.js" />
+     <Compile Include="Assets\BallCatch.js" />
      <Compile Include="Assets\BowlingGame.js" />
      <Compile Include="Assets\Custom Models\fantasySpider\FS_rotateThis.js" />
      <Compile Include="Assets\GUIinfo.js" />
