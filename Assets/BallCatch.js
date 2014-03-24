@@ -1,15 +1,15 @@
 ﻿#pragma strict
 
-var Pin : GameObject;
-
-var TotalPinCount : int;
-var PinCount : int;
+var TotalPinCount : int = 0;
+var PinCount : int = 0;
 var BallCount : int;
+var BowlStart = 0.0;
+var s = "";
 
-private var bowlingSet : int;
-private var PinResetTimer = 1200;
-var frame : int;
-private var score = "";
+private var bowlingSet : int = 0;
+private var PinResetTimer = 550;
+var frame : int = 1;
+private var score : int = 0;
 private var pinsUp = 0;
 private var isBowling = false;
 
@@ -22,6 +22,7 @@ var pinRot : Quaternion[];
 
 function Start () {
 
+		frame = 1;
 		pins = GameObject.FindGameObjectsWithTag("Pin");
 	    pinLoc = new Vector3[pins.Length];
 	    pinTemp = new Vector3[pins.Length];
@@ -34,30 +35,42 @@ function Start () {
 
 function Update () {
 
-		//var timer = Time.time;
-		if(isBowling){        
+		var timer = Time.time - BowlStart;
+		if(isBowling && (timer > 10.0)){        
+			
 	        isBowling = false;
 	        bowlingSet++;
 	        
+	        var lastPinsUp = pinsUp;
+       		var lastNPinsUp = 10 - pinsUp;
+       		pinsUp =0;
+	        
 	        for(var i = 0;i<pins.Length;i++){
 	         var up = Vector3.Dot(Vector3.up, pins[i].transform.up);
-             var dist = Vector3.Distance(pins[i].transform.position, pinTemp[i]);
-	        	if(up < 0.95 && dist > 0.1 ){
+             var dist = Vector3.Distance(pinLoc[i], pinTemp[i]);
+         
+	        	if( up < .95 ){
 	        		pins[i].transform.position = Vector3(0,0,0);
-	        		PinCount++;
-	        		TotalPinCount++;
+	        		
+	        		} else{
+	        		pinsUp++;
 	        		}
 	        }
 	        
-	        if(PinCount == 10)
-	        	BallCount = 2;
+	        var nPins = 10 - pinsUp;
+
+	        if(pinsUp == 0 && bowlingSet == 1) s = "Strike!!!";
+       		if(bowlingSet == 2) s = lastNPinsUp + " + " + (nPins - lastNPinsUp) + " = " + nPins;
+       		if(pinsUp == 0 && bowlingSet == 2) s = "Spare!!!";
 	        
-        }
-		
-			if(BallCount == 2){			
-				if(PinResetTimer == 0)
-				{
+	        TotalPinCount += 10 - pinsUp;
+        	// If Strike Reset
+       		if(bowlingSet == 1 && pinsUp == 0) bowlingSet = 2;
+        
+			if(bowlingSet == 2){			
+
 					frame++;
+					bowlingSet = 0;
 					BallCount = 0;
 
 				// Resets the Pins!
@@ -67,13 +80,15 @@ function Update () {
 	                pins[i].rigidbody.velocity = Vector3.zero;
 	                pins[i].rigidbody.angularVelocity = Vector3.zero;
 	                PinCount = 0;
-            								}
-					PinResetTimer = 1200; 
-							
+					}
 				}
-				PinResetTimer--;
 			}
 			
+}
+
+function OnTriggerEnter()
+{
+	BowlStart = Time.time;
 }
 
 function OnTriggerExit (other : Collider) {
@@ -86,11 +101,15 @@ function OnTriggerExit (other : Collider) {
 							isBowling = true;
 							Destroy(other.gameObject);				
 							}
-
-		
 	}	
 function OnGUI(){
 
-    GUI.Label (Rect (50, 10, 100, 20), "" + score);
+	GUI.Label (Rect (50, 330, 100, 80),  s);
+    GUI.Label (Rect (50, 70, 100, 80),  "Frame "+ frame +
+    									"\nSet: "+ bowlingSet +"/2"+
+    									"\nPins: "+ PinCount +"/10"+
+    									"\nScore: " + TotalPinCount);
+    if(PinCount == 10 && bowlingSet == 2) GUI.Label (Rect (50, 150, 100, 20), "STRIKE!!!");
+    if(PinCount == 10 && bowlingSet == 3) GUI.Label (Rect (50, 150, 100, 20), "Spare!!");
 
 }
