@@ -1,5 +1,7 @@
 fileFormatVersion: 2
 guid: 3171935d9717cab44b75613e6806799a
+labels:
+- WoW
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:

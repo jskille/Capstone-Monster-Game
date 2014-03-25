@@ -39,7 +39,7 @@ function OnGUI() {
 			Application.LoadLevel("mainscreen");
 		}
 		if (GUI.Button(Rect(200, 0, 100, ButtonHeight), "Memory Game")){
-			print("Go to Memory Game");
+			Application.LoadLevel("memoryGameSceneT");
 		}
 		if (GUI.Button(Rect(300, 0, 100, ButtonHeight), "Bowling")){
 			//print("Go to Missile Command");

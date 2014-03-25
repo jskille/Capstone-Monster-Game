@@ -12,7 +12,7 @@ Then we apply the smoothed values to the transform's position.
 // The target we are following
 var target : Transform;
 // The distance in the x-z plane to the target
-var distance = 24.0;
+var distance = 10.0;
 // the height we want the camera to be above the target
 var height = 5.0;
 // How much we 
@@ -36,13 +36,13 @@ function LateUpdate () {
 	var currentHeight = transform.position.y;
 	
 	// Damp the rotation around the y-axis
-	//currentRotationAngle = Mathf.LerpAngle (currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
+	currentRotationAngle = Mathf.LerpAngle (currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
 
 	// Damp the height
 	currentHeight = Mathf.Lerp (currentHeight, wantedHeight, heightDamping * Time.deltaTime);
 
 	// Convert the angle into a rotation
-	var currentRotation = Quaternion.Euler (5, currentRotationAngle, 0);
+	var currentRotation = Quaternion.Euler (0, currentRotationAngle, 0);
 	
 	// Set the position of the camera on the x-z plane to:
 	// distance meters behind the target
