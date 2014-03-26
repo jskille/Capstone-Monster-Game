@@ -72,8 +72,8 @@ function AIControlCenter (){
 				// Decides how long til the cube has to make a new choice
 				var timeToNextDecision = AIChoice(220,400);								
 				// Decides what the cube will do next
-				//Chance = AIChoice(1,100);
-				Chance = 85;	
+				Chance = AIChoice(1,100);
+				
 				DecisionTimer = timeToNextDecision; //Resets the timer for next decision	
 			/*** AI Logic State Chance ***/
 			// Idle
