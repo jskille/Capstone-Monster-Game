@@ -36,7 +36,7 @@ function LateUpdate () {
 	var currentHeight = transform.position.y;
 	
 	// Damp the rotation around the y-axis
-	currentRotationAngle = Mathf.LerpAngle (currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
+	//currentRotationAngle = Mathf.LerpAngle (currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
 
 	// Damp the height
 	currentHeight = Mathf.Lerp (currentHeight, wantedHeight, heightDamping * Time.deltaTime);
