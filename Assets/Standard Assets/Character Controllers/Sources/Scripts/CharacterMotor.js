@@ -334,7 +334,6 @@ function FixedUpdate () {
 function Update () {
 	if (!useFixedUpdate)
 		UpdateFunction();
-
 }
 
 private function ApplyInputVelocityChange (velocity : Vector3) {	
@@ -582,8 +581,6 @@ function SetVelocity (velocity : Vector3) {
 	movement.frameVelocity = Vector3.zero;
 	SendMessage("OnExternalVelocity");
 }
-
-
 
 // Require a character controller to be attached to the same game object
 @script RequireComponent (CharacterController)

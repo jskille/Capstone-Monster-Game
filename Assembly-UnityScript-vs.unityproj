@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\AIController.js" />
+     <Compile Include="Assets\BallCatch.js" />
      <Compile Include="Assets\BowlingGame.js" />
      <Compile Include="Assets\Custom Models\fantasySpider\FS_rotateThis.js" />
      <Compile Include="Assets\GUIinfo.js" />
@@ -65,12 +66,16 @@
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\ZoomCamera.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\tapcontrol.js" />
      <Compile Include="Assets\SunOrbit.js" />
+     <Compile Include="Assets\boxData.js" />
      <Compile Include="Assets\createBall.js" />
      <Compile Include="Assets\createPizza.js" />
      <Compile Include="Assets\disappearReappear.js" />
+     <Compile Include="Assets\label.js" />
+     <Compile Include="Assets\matchDetect.js" />
      <Compile Include="Assets\move2Locations.js" />
      <Compile Include="Assets\moveUpDown.js" />
      <Compile Include="Assets\rotateItem.js" />
+     <Compile Include="Assets\shuffleBlocks.js" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
      <None Include="Assets\Standard Assets (Mobile)\Shaders\Particle Shaders\Mobile Multiply Culled.shader" />

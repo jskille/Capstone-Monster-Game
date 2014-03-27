@@ -7,9 +7,7 @@ public class ActivateTrigger : MonoBehaviour {
 		Activate  = 2, // Activate the target GameObject
 		Enable    = 3, // Enable a component
 		Animate   = 4, // Start animation on target
-		Deactivate= 5, // Decativate target GameObject
-		Teleport  = 6, // Teleport to beginning of templerun
-		TRLGEnd   = 7  // TempleRun->mainscreen
+		Deactivate= 5 // Decativate target GameObject
 	}
 
 	/// The action to accomplish
@@ -22,7 +20,7 @@ public class ActivateTrigger : MonoBehaviour {
 	public bool repeatTrigger = false;
 	
 	void DoActivateTrigger () {
-			triggerCount--;
+		triggerCount--;
 
 		if (triggerCount == 0 || repeatTrigger) {
 			Object currentTarget = target != null ? target : gameObject;
@@ -37,7 +35,7 @@ public class ActivateTrigger : MonoBehaviour {
 					break;
 				case Mode.Replace:
 					if (source != null) {
-					Object.Instantiate (source, targetGameObject.transform.position, targetGameObject.transform.rotation);
+						Object.Instantiate (source, targetGameObject.transform.position, targetGameObject.transform.rotation);
 						DestroyObject (targetGameObject);
 					}
 					break;
@@ -53,12 +51,6 @@ public class ActivateTrigger : MonoBehaviour {
 					break;	
 				case Mode.Deactivate:
 					targetGameObject.active = false;
-					break;
-				case Mode.Teleport:
-					gameObject.transform.position = new Vector3(84.47279f, 7.817987f, 84.89379f);
-					break;
-				case Mode.TRLGEnd:
-					Application.LoadLevel(0);
 					break;
 			}
 		}

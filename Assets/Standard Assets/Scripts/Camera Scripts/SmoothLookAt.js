@@ -9,7 +9,6 @@ function LateUpdate () {
 		if (smooth)
 		{
 			// Look at and dampen the rotation
-			var xOffset : float = 20.0;
 			var rotation = Quaternion.LookRotation(target.position - transform.position);
 			rigidbody.position.z = target.position.z;
 			transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
