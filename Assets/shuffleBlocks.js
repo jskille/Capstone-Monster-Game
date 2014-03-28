@@ -52,9 +52,6 @@ function Start () {
 	Box14.transform.position  = positions[13];
 	Box15.transform.position  = positions[14];
 	Box16.transform.position  = positions[15];
-	
-
-
 }
 
 function Update () {
