@@ -1,4 +1,4 @@
-﻿#pragma strict
+﻿
 
 function Start () {
 
@@ -16,16 +16,16 @@ var formText = ""; //this field is where the messages sent by PHP script will be
 var URL = "http://creature.getbeasted.com/GAME/Login.php"; //change for your URL
 var hash = "TheDudeAbides."; //change your secret code, and remember to change into the PHP file too
      
-private var textrect = Rect (400, 150, 500, 500); //just make a GUI object rectangle
+private var textrect = Rect ((Screen.width/2)-50, 150, Screen.width/2, Screen.height/2); //just make a GUI object rectangle
      
 function OnGUI() {
-        GUI.Label( Rect (450, 220, 100, 20), "Email:" ); //text with your nick
-        GUI.Label( Rect (450, 240, 100, 20), "Password:" );
+        GUI.Label( Rect (Screen.width/2, 220, 100, 20), "Email:" ); //text with your nick
+        GUI.Label( Rect (Screen.width/2, 240, 100, 20), "Password:" );
      
-        formNick = GUI.TextField ( Rect (520, 220, 100, 20), formNick ); //here you will insert the new value to variable formNick
-        formPassword = GUI.TextField ( Rect (520, 240, 100, 20), formPassword ); //same as above, but for password
+        formNick = GUI.TextField ( Rect ((Screen.width/2)+120, 220, 100, 20), formNick ); //here you will insert the new value to variable formNick
+        formPassword = GUI.TextField ( Rect ((Screen.width/2)+120, 240, 100, 20), formPassword ); //same as above, but for password
      
-        if ( GUI.Button ( Rect (500, 280, 100, 40) , "Login" ) ){ //just a button
+        if ( GUI.Button ( Rect ((Screen.width/2)+50, 280, 100, 40) , "Login" ) ){ //just a button
             Login();
         }
         GUI.TextArea( textrect, formText );
@@ -44,19 +44,44 @@ function Login() {
             print("Hueueuewston we have made contact!");
             LoggedInOK = true;
             formText = w.data; //here we return the data our PHP told us
-            DownloadCreatureData(w);
-            yield WaitForSeconds(3);
-            Destroy(this);
-            w.Dispose(); //clear our form in game
+            //Parser
+    		var parsedText = formText.Split(","[0]);
+            parsedText[0] = parsedText[0].TrimStart(); //Remove Whitespaces from first Index
+            
+            
+            // If Login OK
+            if("LoginOK".CompareTo(parsedText[0]) == 0){
+			            DownloadCreatureData(parsedText);
+			            yield WaitForSeconds(3);
+			            Destroy(this);
+		            }else{
+			// If Login BAD
+					    Debug.Log("Login Failure");
+			            w.Dispose(); //clear our form in game
+		            }
         }
      
         formNick = ""; //just clean our variables
         formPassword = "";
     }
     
-function DownloadCreatureData (w : WWW) {
+function DownloadCreatureData (parsedText) {
 
+		var CreatureID = parsedText[1];
+		var CreatureType = parsedText[2];
+		var OwnerID = parsedText[3];
+		var Strength = parsedText[4];
+		var Dex = parsedText[5];
+		var Intellect = parsedText[6];
 		
+		Debug.Log("Creature Stats Download Start");
+		Debug.Log("cID:" + CreatureID);
+		Debug.Log("cType:" + CreatureType);
+		Debug.Log("OwnerID:" + OwnerID);
+		Debug.Log("cStrength:" + Strength);
+		Debug.Log("cDex:" + Dex);
+		Debug.Log("Intellect:" + Intellect);
+		Debug.Log("Creature Stats Download End");
 
 	
 
