@@ -112,15 +112,15 @@ function AIPreformAction () {
 }
 function StatusController () {
 
-		if(happyCurrent > 0) happyCurrent -= .67 * Time.deltaTime; else happyCurrent = 0;
-		if(stomachCurrent > 0) stomachCurrent -= .44 * Time.deltaTime; else stomachCurrent = 0;
+		if(happyCurrent > 0) happyCurrent -= .35 * Time.deltaTime; else happyCurrent = 0;
+		if(stomachCurrent > 0) stomachCurrent -= .28 * Time.deltaTime; else stomachCurrent = 0;
 		
 		// Creature Energy Level Adjustments
-		if(CurrentState == AIState.Disabled) { if (energy <= 100) energy += 5 * Time.deltaTime; }
-		if(CurrentState == AIState.Idling) { if (energy <= 100) energy += 5 * Time.deltaTime; }
-		if(CurrentState == AIState.Walking) { energy -= 2 * Time.deltaTime; }
-		if(CurrentState == AIState.Running) { energy -= 3 * Time.deltaTime; }
-		if(CurrentState == AIState.Playing) { energy -= 3.5 * Time.deltaTime; }
+		if(CurrentState == AIState.Disabled) { if (energy <= 100) energy += 1 * Time.deltaTime; }
+		if(CurrentState == AIState.Idling) { if (energy <= 100) energy += 6 * Time.deltaTime; }
+		if(CurrentState == AIState.Walking) { energy -= 1.5 * Time.deltaTime; }
+		if(CurrentState == AIState.Running) { energy -= 2.5 * Time.deltaTime; }
+		if(CurrentState == AIState.Playing) { energy -= 3 * Time.deltaTime; }
 }
 
 function AIChoice (x : float,y : float) {

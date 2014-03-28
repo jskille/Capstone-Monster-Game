@@ -49,9 +49,12 @@
      <Compile Include="Assets\AIController.js" />
      <Compile Include="Assets\BallCatch.js" />
      <Compile Include="Assets\BowlingGame.js" />
+     <Compile Include="Assets\CombatAI.js" />
+     <Compile Include="Assets\CombatAbilities.js" />
      <Compile Include="Assets\Custom Models\fantasySpider\FS_rotateThis.js" />
      <Compile Include="Assets\GUIinfo.js" />
      <Compile Include="Assets\ImpactRecieve.js" />
+     <Compile Include="Assets\MySQLTastesFunny.js" />
      <Compile Include="Assets\Sounds\playSoundOnCollide.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\CameraRelativeControl.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\FirstPersonControl.js" />
@@ -66,10 +69,12 @@
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\ZoomCamera.js" />
      <Compile Include="Assets\Standard Assets (Mobile)\Scripts\tapcontrol.js" />
      <Compile Include="Assets\SunOrbit.js" />
+     <Compile Include="Assets\TRGUI.js" />
      <Compile Include="Assets\boxData.js" />
      <Compile Include="Assets\createBall.js" />
      <Compile Include="Assets\createPizza.js" />
      <Compile Include="Assets\disappearReappear.js" />
+     <Compile Include="Assets\doIAppear.js" />
      <Compile Include="Assets\label.js" />
      <Compile Include="Assets\matchDetect.js" />
      <Compile Include="Assets\move2Locations.js" />
