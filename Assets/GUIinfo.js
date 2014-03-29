@@ -52,8 +52,9 @@ function OnGUI() {
 		if (GUI.Button(Rect(450, 0, 100, ButtonHeight), "Creature Shop")){
 			print("Creature Shop");
 		}
-		if (GUI.Button(Rect(550, 0, 100, ButtonHeight), "Multiplayer")){
-			print("Go to Multiplayer");
+		if (GUI.Button(Rect(550, 0, 100, ButtonHeight), "Combat")){
+			//print("Go to Multiplayer");
+			Application.LoadLevel("Combat");
 		}
 	}
 	
