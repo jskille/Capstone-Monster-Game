@@ -12,8 +12,9 @@ private var LoggedInOK = false;
 private var formNick = ""; //this is the field where the player will put the name to login
 private var formPassword = ""; //this is his password
 var formText = ""; //this field is where the messages sent by PHP script will be in
+var savedText = "";
      
-var URL = "http://creature.getbeasted.com/GAME/Login.php"; //change for your URL
+var URL = "http://creature.getbeasted.com/GAME"; //change for your URL
 var hash = "TheDudeAbides."; //change your secret code, and remember to change into the PHP file too
      
 private var textrect = Rect ((Screen.width/2)-50, 150, Screen.width/2, Screen.height/2); //just make a GUI object rectangle
@@ -36,7 +37,7 @@ function Login() {
         form.AddField( "myform_hash", hash ); //add your hash code to the field myform_hash, check that this variable name is the same as in PHP file
         form.AddField( "myform_nick", formNick );
         form.AddField( "myform_pass", formPassword );
-        var w = WWW(URL, form); //here we create a var called 'w' and we sync with our URL and the form
+        var w = WWW(URL + "/Login.php", form); //here we create a var called 'w' and we sync with our URL and the form
         yield w; //we wait for the form to check the PHP file, so our game dont just hang
         if (w.error != null) {
             print(w.error); //if there is an error, tell us
@@ -52,6 +53,7 @@ function Login() {
             // If Login OK
             if("LoginOK".CompareTo(parsedText[0]) == 0){
 			            DownloadCreatureData(parsedText);
+			            SaveCreatureToDatabase();
 			            yield WaitForSeconds(3);
 			            Destroy(this);
 		            }else{
@@ -83,6 +85,34 @@ function DownloadCreatureData (parsedText) {
 		Debug.Log("Intellect:" + Intellect);
 		Debug.Log("Creature Stats Download End");
 
-	
+}
+
+function SaveCreatureToDatabase() 
+{
+		var CreatureID = 1;
+		var CreatureType = 1;
+		var OwnerID = 1;
+		var Strength = 1;
+		var Dex = 5;
+		var Intellect = 1;
+
+		var form = new WWWForm(); //here you create a new form connection
+        form.AddField( "myform_hash", hash ); //add your hash code to the field myform_hash, check that this variable name is the same as in PHP file
+        form.AddField( "cID", CreatureID );
+        form.AddField( "cType", CreatureType );
+        form.AddField( "OwnerID", OwnerID );
+        form.AddField( "str", Strength );
+        form.AddField( "dex", Dex );
+        form.AddField( "intellect", Intellect );
+        var x = WWW(URL+"/SaveCreature.php", form); //here we create a var called 'w' and we sync with our URL and the form
+        yield x; //we wait for the form to check the PHP file, so our game dont just hang
+        
+        if (x.error != null) {
+            print(x.error); //if there is an error, tell us
+        } else {
+        	savedText = x.data; //here we return the data our PHP told us
+        	print(savedText);
+        	print("Data Saved");
+        }
 
 }
