@@ -44,7 +44,7 @@ function OnGUI() {
 		}
 		if(GUI.Button(Rect(100,0,100,ButtonHeight - 10), "Quit"))
 		{
-			Application.LoadLevel(0);
+			Application.LoadLevel("mainscreen");
 		}
 	}
 }

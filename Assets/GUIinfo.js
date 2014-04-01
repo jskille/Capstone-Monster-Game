@@ -47,7 +47,7 @@ function OnGUI() {
 		}
 		if (GUI.Button(Rect(350, 0, 100, ButtonHeight), "Jump Game")){
 			print("Go to Don't Touch the Water Game");
-			Application.LoadLevel(1);
+			Application.LoadLevel("TempleRunLikeGame");
 		}
 		if (GUI.Button(Rect(450, 0, 100, ButtonHeight), "Creature Shop")){
 			print("Creature Shop");

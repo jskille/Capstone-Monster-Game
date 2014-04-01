@@ -2,7 +2,10 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MySQLTastesFunny.js">
     <Files>
-      <File FileName="Assets\MySQLTastesFunny.js" Line="101" Column="44" />
+      <File FileName="Assets\MySQLTastesFunny.js" Line="130" Column="25" />
+      <File FileName="Assets\AIController.js" Line="3" Column="6" />
+      <File FileName="Assets\TitleScreenScript.js" Line="4" Column="37" />
+      <File FileName="Assets\GUIinfo.js" Line="136" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

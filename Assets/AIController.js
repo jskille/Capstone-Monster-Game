@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+var x;
+
 private var DecisionTimer = 550;
 var Chance : float = 0;
 private var disableAItime = 0; // Disables AI during input
@@ -230,6 +232,12 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
    		}
    		happyCurrent += playBonus;
    		playBonus = 2;
+   		
+   		//var otherScript: OtherScript = GetComponent("MySQLTastesFunny.js"); 
+     	//otherScript.giveCreatureExperience(3,1,0);
+     	//x = GetComponent(x);
+     	//x.giveCreatureExp(3,1,0);
+   
    	}
    	else if (body.name == "Pizza(Clone)")
    	{

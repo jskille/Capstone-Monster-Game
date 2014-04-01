@@ -1,14 +1,21 @@
 ﻿
+// Persistant Creature Data
+private var CreatureID;
+private var CreatureType;
+private var OwnerID;
+private var Strength; 
+private var Dex;
+private var Intellect;
 
+
+function Awake () {
+			DontDestroyOnLoad(this);
+}
 function Start () {
-
+		
 }
 
-function Update () {
-
-}
-
-private var LoggedInOK = false;
+private var Authed = false;
 private var formNick = ""; //this is the field where the player will put the name to login
 private var formPassword = ""; //this is his password
 var formText = ""; //this field is where the messages sent by PHP script will be in
@@ -20,6 +27,8 @@ var hash = "TheDudeAbides."; //change your secret code, and remember to change i
 private var textrect = Rect ((Screen.width/2)-50, 150, Screen.width/2, Screen.height/2); //just make a GUI object rectangle
      
 function OnGUI() {
+
+	if(Authed == false){
         GUI.Label( Rect (Screen.width/2, 220, 100, 20), "Email:" ); //text with your nick
         GUI.Label( Rect (Screen.width/2, 240, 100, 20), "Password:" );
      
@@ -30,6 +39,7 @@ function OnGUI() {
             Login();
         }
         GUI.TextArea( textrect, formText );
+        }
 }
      
 function Login() {
@@ -54,8 +64,9 @@ function Login() {
             if("LoginOK".CompareTo(parsedText[0]) == 0){
 			            DownloadCreatureData(parsedText);
 			            SaveCreatureToDatabase();
-			            yield WaitForSeconds(3);
-			            Destroy(this);
+			            yield WaitForSeconds(2); 	
+			            Authed = true;			
+			            //Destroy(this);
 		            }else{
 			// If Login BAD
 					    Debug.Log("Login Failure");
@@ -69,12 +80,12 @@ function Login() {
     
 function DownloadCreatureData (parsedText) {
 
-		var CreatureID = parsedText[1];
-		var CreatureType = parsedText[2];
-		var OwnerID = parsedText[3];
-		var Strength = parsedText[4];
-		var Dex = parsedText[5];
-		var Intellect = parsedText[6];
+		CreatureID = parsedText[1];
+		CreatureType = parsedText[2];
+		OwnerID = parsedText[3];
+		Strength = parsedText[4];
+		Dex = parsedText[5];
+		Intellect = parsedText[6];
 		
 		Debug.Log("Creature Stats Download Start");
 		Debug.Log("cID:" + CreatureID);
@@ -84,17 +95,16 @@ function DownloadCreatureData (parsedText) {
 		Debug.Log("cDex:" + Dex);
 		Debug.Log("Intellect:" + Intellect);
 		Debug.Log("Creature Stats Download End");
-
 }
 
-function SaveCreatureToDatabase() 
+function SaveCreatureToDatabase()
 {
-		var CreatureID = 1;
-		var CreatureType = 1;
-		var OwnerID = 1;
-		var Strength = 1;
-		var Dex = 5;
-		var Intellect = 1;
+		CreatureID = 1;
+		CreatureType = 1;
+		OwnerID = 1;
+		Strength = 1;
+		Dex = 3;
+		Intellect = 1;
 
 		var form = new WWWForm(); //here you create a new form connection
         form.AddField( "myform_hash", hash ); //add your hash code to the field myform_hash, check that this variable name is the same as in PHP file
@@ -114,5 +124,15 @@ function SaveCreatureToDatabase()
         	print(savedText);
         	print("Data Saved");
         }
+
+}
+
+function giveCreatureExp(str,dex,intel) {
+	
+	Strength += str;
+	Dex += dex;
+	Intellect += intel;
+	
+	SaveCreatureToDatabase();
 
 }
