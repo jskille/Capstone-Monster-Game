@@ -12,7 +12,12 @@ function Awake () {
 			DontDestroyOnLoad(this);
 }
 function Start () {
-		
+		CreatureID = 1;
+		CreatureType = 1;
+		OwnerID = 1;
+		Strength = 1;
+		Dex = 3;
+		Intellect = 1;		
 }
 
 private var Authed = false;
@@ -99,13 +104,6 @@ function DownloadCreatureData (parsedText) {
 
 function SaveCreatureToDatabase()
 {
-		CreatureID = 1;
-		CreatureType = 1;
-		OwnerID = 1;
-		Strength = 1;
-		Dex = 3;
-		Intellect = 1;
-
 		var form = new WWWForm(); //here you create a new form connection
         form.AddField( "myform_hash", hash ); //add your hash code to the field myform_hash, check that this variable name is the same as in PHP file
         form.AddField( "cID", CreatureID );

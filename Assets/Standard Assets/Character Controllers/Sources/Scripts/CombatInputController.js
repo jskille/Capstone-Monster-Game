@@ -10,6 +10,8 @@ var isWalking : boolean = false;
 var isJumping : boolean = false;
 var grounded = true;
 
+var mainScreenCreature : GameObject;
+
 public var idleAnimation : AnimationClip;
 public var walkAnimation : AnimationClip;
 public var runAnimation : AnimationClip;
@@ -26,6 +28,11 @@ private var motor : CharacterMotor;
 
 // Use this for initialization
 function Awake () {
+	mainScreenCreature = GameObject.Find("Creature Main");
+	//mainScreenCreature.MySQLTastesFunny.giveCreatureExp(1,1,1);
+	mySQLthingy = mainScreenCreature.GetComponent("MySQLTastesFunny");
+	Destroy(mainScreenCreature);
+	mySQLthingy.giveCreatureExp(1,1,1);
 	motor = GetComponent(CharacterMotor);
 	animationComp = GetComponent(Animation);
 	if(!animationComp)
