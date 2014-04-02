@@ -1,11 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MySQLTastesFunny.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\CombatInputController.js">
     <Files>
-      <File FileName="Assets\MySQLTastesFunny.js" Line="130" Column="25" />
-      <File FileName="Assets\AIController.js" Line="3" Column="6" />
-      <File FileName="Assets\TitleScreenScript.js" Line="4" Column="37" />
-      <File FileName="Assets\GUIinfo.js" Line="136" Column="2" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\CombatInputController.js" Line="35" Column="4" />
+      <File FileName="Assets\AIController.js" Line="250" Column="71" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

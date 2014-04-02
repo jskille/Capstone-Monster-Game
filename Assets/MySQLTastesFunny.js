@@ -68,7 +68,8 @@ function Login() {
             // If Login OK
             if("LoginOK".CompareTo(parsedText[0]) == 0){
 			            DownloadCreatureData(parsedText);
-			            SaveCreatureToDatabase();
+			            //SaveCreatureToDatabase();
+			            Authed = true;
 			            yield WaitForSeconds(2); 	
 			            Authed = true;			
 			            //Destroy(this);
@@ -119,8 +120,7 @@ function SaveCreatureToDatabase()
             print(x.error); //if there is an error, tell us
         } else {
         	savedText = x.data; //here we return the data our PHP told us
-        	print(savedText);
-        	print("Data Saved");
+        	print("Data Saved: Success");
         }
 
 }
@@ -130,6 +130,7 @@ function giveCreatureExp(str,dex,intel) {
 	Strength += str;
 	Dex += dex;
 	Intellect += intel;
+	Debug.Log("Creature "+CreatureID+" updated to "+Strength+","+Dex+","+Intellect);
 	
 	SaveCreatureToDatabase();
 

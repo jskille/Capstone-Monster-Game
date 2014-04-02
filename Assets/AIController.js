@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
 var x;
+var mainScreenCreature : GameObject;
 
 private var DecisionTimer = 550;
 var Chance : float = 0;
@@ -232,11 +233,7 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
    		}
    		happyCurrent += playBonus;
    		playBonus = 2;
-   		
-   		//var otherScript: OtherScript = GetComponent("MySQLTastesFunny.js"); 
-     	//otherScript.giveCreatureExperience(3,1,0);
-     	//x = GetComponent(x);
-     	//x.giveCreatureExp(3,1,0);
+
    
    	}
    	else if (body.name == "Pizza(Clone)")
@@ -248,5 +245,10 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
    		stomachCurrent += foodBonus;
    		foodBonus = 20;
    		Destroy(hit.gameObject);
+   		
+   		// Giving Exp and Saving to the Database
+   		mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
+		var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);
+		mySQLthingy.giveCreatureExp(3,1,2);
    	}
 }

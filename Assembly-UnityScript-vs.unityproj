@@ -73,12 +73,14 @@
      <Compile Include="Assets\TitleScreenScript.js" />
      <Compile Include="Assets\boxData.js" />
      <Compile Include="Assets\createBall.js" />
+     <Compile Include="Assets\createFireball.js" />
      <Compile Include="Assets\createPizza.js" />
      <Compile Include="Assets\disappearReappear.js" />
      <Compile Include="Assets\doIAppear.js" />
      <Compile Include="Assets\label.js" />
      <Compile Include="Assets\matchDetect.js" />
      <Compile Include="Assets\move2Locations.js" />
+     <Compile Include="Assets\moveFireball.js" />
      <Compile Include="Assets\moveUpDown.js" />
      <Compile Include="Assets\persistCreatureStats.js" />
      <Compile Include="Assets\rotateItem.js" />
