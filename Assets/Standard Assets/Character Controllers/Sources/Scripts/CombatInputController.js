@@ -26,14 +26,16 @@ public var landAnimationSpeed : float = 1.0;
 
 private var animationComp : Animation;
 private var motor : CharacterMotor;
+private var combatAbil : CombatAbilities;
 
 // Use this for initialization
 function Awake () {
-	mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
+	//mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
 	//mainScreenCreature.MySQLTastesFunny.giveCreatureExp(1,1,1);
-	var mySQLthingy = mainScreenCreature.GetComponent("MySQLTastesFunny");
+	//var mySQLthingy = mainScreenCreature.GetComponent("MySQLTastesFunny");
 	//Destroy(mainScreenCreature);
-	mySQLthingy.giveCreatureExp(1,1,1);
+	//mySQLthingy.giveCreatureExp(1,1,1);
+	combatAbil = GetComponent(CombatAbilities);
 	motor = GetComponent(CharacterMotor);
 	animationComp = GetComponent(Animation);
 	if(!animationComp)
@@ -61,6 +63,7 @@ function Awake () {
 
 // Update is called once per frame
 function Update () {
+	combatAbil.Attack(facingRight);
 	this.transform.position.z = 36.47913;
 	// Get the input vector from kayboard or analog stick
 	var rightDirection : boolean = Input.GetKey("right");
@@ -74,7 +77,7 @@ function Update () {
 		if (horizontal == 0.1 && !facingRight)
 		{
 			this.transform.RotateAround(this.transform.position, Vector3(0, 1, 0), 180);
-			facingRight = true;	
+			facingRight = true;;
 		}
 		vertical = 0.3;
 	}
@@ -98,7 +101,7 @@ function Update () {
 		bumpLeft = -0.1;
 	}
 	
-	if (!rightDirection && !leftDirection)
+	if (!rightDirection && !leftDirection && grounded)
 	{
 		horizontal = 0;
 		vertical = 0;
@@ -114,7 +117,7 @@ function Update () {
 	{
 		if (!isJumping)
 		{
-			animationComp.CrossFade("jump_pose");
+			animationComp.Play("jump_pose");
 			isJumping = true;
 		}
 	}	
@@ -129,11 +132,6 @@ function Update () {
 	motor.inputMoveDirection = directionVector;
 	motor.inputJump = Input.GetButton("Jump");
 	
-	if (motor.inputJump == true)
-	{
-		grounded = false;
-	}
-	
 	// Set rotation to the move direction	
 	if (autoRotate && directionVector.sqrMagnitude > 0.01) {
 		var newForward : Vector3 = ConstantSlerp(
@@ -143,6 +141,11 @@ function Update () {
 		);
 		newForward = ProjectOntoPlane(newForward, transform.up);
 		transform.rotation = Quaternion.LookRotation(newForward, transform.up);
+	}
+	
+	if (motor.inputJump == true)
+	{
+		grounded = false;
 	}
 }
 

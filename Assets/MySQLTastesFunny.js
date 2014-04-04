@@ -89,9 +89,9 @@ function DownloadCreatureData (parsedText) {
 		CreatureID = parsedText[1];
 		CreatureType = parsedText[2];
 		OwnerID = parsedText[3];
-		Strength = parsedText[4];
-		Dex = parsedText[5];
-		Intellect = parsedText[6];
+		Strength = parseInt(parsedText[4]);
+		Dex = parseInt(parsedText[5]);
+		Intellect = parseInt(parsedText[6]);
 		
 		Debug.Log("Creature Stats Download Start");
 		Debug.Log("cID:" + CreatureID);
