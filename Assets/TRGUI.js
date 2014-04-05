@@ -12,6 +12,27 @@ function Start () {
 function OnGUI() {
 
 //if user is x level: set objcube to 0
+	var object : GameObject;
+	var checkObj : Renderer;
+	object = GameObject.Find("BlueCube");
+	checkObj = object.renderer;
+	if(checkObj.isVisible == true)
+	{
+		objectiveCube = 1;
+	}
+	object = GameObject.Find("GreenCube");
+	checkObj = object.renderer;
+	if(checkObj.isVisible == true)
+	{
+		objectiveCube = 0;
+	}
+	object = GameObject.Find("WhiteCube");
+	checkObj = object.renderer;
+	if(checkObj.isVisible == true)
+	{
+		objectiveCube = 2;
+	}
+
 	if(objectiveCube == 0)
 	{
 		objectiveCubeName = "Green";
