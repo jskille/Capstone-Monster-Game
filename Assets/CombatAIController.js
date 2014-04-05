@@ -101,6 +101,7 @@ function Update () {
 				this.transform.position.y, 
 				this.transform.position.z, 
 				opponent, source);
+				
 		}
 		else
 		{
@@ -109,6 +110,7 @@ function Update () {
 				this.transform.position.y, 
 				this.transform.position.z, 
 				opponent, source);
+				
 		}
 		AIFireballCooldown = 100;
 	}

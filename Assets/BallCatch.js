@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+
+
 var TotalPinCount : int = 0;
 var PinCount : int = 0;
 var BallCount : int;
@@ -58,10 +60,25 @@ function Update () {
 	        }
 	        
 	        var nPins = 10 - pinsUp;
+	        
+	        var mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
+			var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);
 
-	        if(pinsUp == 0 && bowlingSet == 1) s = "Strike!!!";
+	        if(pinsUp == 0 && bowlingSet == 1) { s = "Strike!!!"; 
+	        									//Bonus EXP
+	        										mySQLthingy.giveCreatureExp(10,3,0);
+	        									}
        		if(bowlingSet == 2) s = lastNPinsUp + " + " + (nPins - lastNPinsUp) + " = " + nPins;
-       		if(pinsUp == 0 && bowlingSet == 2) s = "Spare!!!";
+       		if(pinsUp == 0 && bowlingSet == 2) { s = "Spare!!!"; 
+       											//Bonus EXP
+													mySQLthingy.giveCreatureExp(7,1,0);
+       											}
+       											
+       											// Base EXP
+       											mySQLthingy.giveCreatureExp(4,1,0);
+       											
+
+			mySQLthingy.giveCreatureExp(13,3,0);
 	        
 	        TotalPinCount += 10 - pinsUp;
         	// If Strike Reset

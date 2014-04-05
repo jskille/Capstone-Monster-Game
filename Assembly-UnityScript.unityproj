@@ -49,8 +49,7 @@
      <Compile Include="Assets\AIController.js" />
      <Compile Include="Assets\BallCatch.js" />
      <Compile Include="Assets\BowlingGame.js" />
-     <Compile Include="Assets\CombatAI.js" />
-     <Compile Include="Assets\CombatAbilities.js" />
+     <Compile Include="Assets\CombatAIController.js" />
      <Compile Include="Assets\Custom Models\fantasySpider\FS_rotateThis.js" />
      <Compile Include="Assets\GUIinfo.js" />
      <Compile Include="Assets\ImpactRecieve.js" />
@@ -77,6 +76,8 @@
      <Compile Include="Assets\createPizza.js" />
      <Compile Include="Assets\disappearReappear.js" />
      <Compile Include="Assets\doIAppear.js" />
+     <Compile Include="Assets\fireballController.js" />
+     <Compile Include="Assets\health.js" />
      <Compile Include="Assets\label.js" />
      <Compile Include="Assets\matchDetect.js" />
      <Compile Include="Assets\move2Locations.js" />

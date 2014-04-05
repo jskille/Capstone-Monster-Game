@@ -1,9 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Standard Assets\Character Controllers\Sources\Scripts\CombatInputController.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CombatAIController.js">
     <Files>
+      <File FileName="Assets\CombatAIController.js" Line="188" Column="2" />
       <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\CombatInputController.js" Line="35" Column="4" />
-      <File FileName="Assets\AIController.js" Line="250" Column="71" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

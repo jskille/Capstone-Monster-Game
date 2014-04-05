@@ -38,7 +38,8 @@ function OnGUI() {
         GUI.Label( Rect (Screen.width/2, 240, 100, 20), "Password:" );
      
         formNick = GUI.TextField ( Rect ((Screen.width/2)+120, 220, 100, 20), formNick ); //here you will insert the new value to variable formNick
-        formPassword = GUI.TextField ( Rect ((Screen.width/2)+120, 240, 100, 20), formPassword ); //same as above, but for password
+        //formPassword = GUI.PasswordField ( Rect ((Screen.width/2)+120, 240, 100, 20), formPassword ); //same as above, but for password
+        formPassword =	GUI.PasswordField (Rect ((Screen.width/2)+120, 240, 100, 20), formPassword, "*"[0]);
      
         if ( GUI.Button ( Rect ((Screen.width/2)+50, 280, 100, 40) , "Login" ) ){ //just a button
             Login();
@@ -57,8 +58,7 @@ function Login() {
         if (w.error != null) {
             print(w.error); //if there is an error, tell us
         } else {
-            print("Hueueuewston we have made contact!");
-            LoggedInOK = true;
+            print("Hueueuewston we have made contact!");        
             formText = w.data; //here we return the data our PHP told us
             //Parser
     		var parsedText = formText.Split(","[0]);

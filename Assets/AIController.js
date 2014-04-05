@@ -1,8 +1,5 @@
 ﻿#pragma strict
 
-var x;
-var mainScreenCreature : GameObject;
-
 private var DecisionTimer = 550;
 var Chance : float = 0;
 private var disableAItime = 0; // Disables AI during input
@@ -221,6 +218,8 @@ function OnGUI() {
 function OnControllerColliderHit (hit : ControllerColliderHit)
 {
 	var body : Rigidbody = hit.collider.attachedRigidbody;
+	   	var mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
+		var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);
      
     // no rigidbody
     if (body == null || body.isKinematic) { return; }
@@ -233,6 +232,9 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
    		}
    		happyCurrent += playBonus;
    		playBonus = 2;
+   		
+   		// Giving Exp and Saving to the Database
+		mySQLthingy.giveCreatureExp(1,1,0);
 
    
    	}
@@ -247,8 +249,6 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
    		Destroy(hit.gameObject);
    		
    		// Giving Exp and Saving to the Database
-   		mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
-		var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);
-		mySQLthingy.giveCreatureExp(3,1,2);
+		mySQLthingy.giveCreatureExp(1,1,2);
    	}
 }
