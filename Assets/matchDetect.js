@@ -15,7 +15,13 @@ var boxesHit : int = 0;
 @HideInInspector
 var currentBoxID : int = 0;
 
+//number of misses
+@HideInInspector
+var numMisses : int = 0;
+//value to signify end of game
+var isComplete : int = 0;
 
+var baseXP = 10;
 
 function Start () {
 
@@ -45,7 +51,6 @@ function OnControllerColliderHit (hit : ControllerColliderHit) {
 				box2 = boxID;
 				checkMatch();
 				boxesHit++;
-				reset();
 			}
 		}
 	}
@@ -128,27 +133,56 @@ function checkMatch(){
 }
 
 function Update () {
-
+	if(isComplete == 8)
+	{
+	 var rewardXP = 0;
+	 var mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
+	 var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);	 
+		//Debug.Log("game complete");
+		if(numMisses == 0)
+		{
+			rewardXP = baseXP * 10;
+			// Giving Exp and Saving to the Database
+			mySQLthingy.giveCreatureExp(0,0,rewardXP);
+		}
+		else if(numMisses <= 6)
+		{
+			rewardXP = baseXP * 3;
+			// Giving Exp and Saving to the Database
+			mySQLthingy.giveCreatureExp(0,0,rewardXP);
+		}
+		
+	}	
+	else{
+	reset();
+	}
 }
 
 function reset()
 {
+	if(boxesHit==2)
+	{
 		//hide text
 		yield WaitForSeconds(1);
 		var boxText : GUIText;
-		if(GameObject.Find("boxText"+box1) != null)
-		{
-		 	boxText = GameObject.Find("boxText"+box1).guiText;
-     		boxText.text = "";
-     	}
-     	if(GameObject.Find("boxText"+box2) != null)
-     	{
-     		boxText = GameObject.Find("boxText"+box2).guiText;
-     		boxText.text = "";
-     	}
-
+		
+        if (GameObject.Find("boxText"+box1) != null)
+        {
+            boxText = GameObject.Find("boxText"+box1).guiText;
+            boxText.text = "";
+         }
+         
+         if (GameObject.Find("boxText"+box2) != null)
+         {
+             boxText = GameObject.Find("boxText"+box2).guiText;
+             boxText.text = "";
+         }
 		//reset boxesHit
 		boxesHit=0;
+		//allow user hit previously slected block
 		currentBoxID = 0;
+		//nullify perfect game multiplier
+		numMisses++;
+	}
 }
 
