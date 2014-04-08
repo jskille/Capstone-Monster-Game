@@ -21,7 +21,7 @@ var numMisses : int = 0;
 //value to signify end of game
 var isComplete : int = 0;
 
-var baseXP = 10;
+private var baseXP = 10;
 
 function Start () {
 
@@ -61,6 +61,11 @@ function checkMatch(){
 	{	
 		Debug.Log("matched");
 		yield WaitForSeconds(1.5);
+		var mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
+	 	var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);
+	 	
+	 	// Give 5 intellect per box match
+	 	mySQLthingy.giveCreatureExp(0,0,5);
 		
 		switch(box1)
 		{
@@ -149,14 +154,19 @@ function Update () {
 		//Debug.Log("game complete");
 		if(numMisses == 0)
 		{
-			rewardXP = baseXP * 10;
+			rewardXP = baseXP * 8;
 			// Giving Exp and Saving to the Database
 			mySQLthingy.giveCreatureExp(0,0,rewardXP);
 		}
 		else if(numMisses <= 6)
 		{
-			rewardXP = baseXP * 3;
+			rewardXP = baseXP * 6;
 			// Giving Exp and Saving to the Database
+			mySQLthingy.giveCreatureExp(0,0,rewardXP);
+		}
+		else if(numMisses > 6 )
+		{
+			rewardXP = baseXP * 3;
 			mySQLthingy.giveCreatureExp(0,0,rewardXP);
 		}
 		//yield WaitForSeconds(1.5);

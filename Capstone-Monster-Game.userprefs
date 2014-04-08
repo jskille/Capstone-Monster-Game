@@ -1,9 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\CombatAIController.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MySQLTastesFunny.js">
     <Files>
-      <File FileName="Assets\CombatAIController.js" Line="188" Column="2" />
-      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\CombatInputController.js" Line="35" Column="4" />
+      <File FileName="Assets\matchDetect.js" Line="172" Column="5" />
+      <File FileName="Assets\Standard Assets\Character Controllers\Sources\Scripts\CombatInputController.js" Line="1" Column="1" />
+      <File FileName="Assets\GUIinfo.js" Line="48" Column="60" />
+      <File FileName="Assets\MySQLTastesFunny.js" Line="142" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

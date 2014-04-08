@@ -38,21 +38,18 @@ function OnGUI() {
 			//print("Go to Platformer");
 			Application.LoadLevel("mainscreen");
 		}
-		if (GUI.Button(Rect(150, 0, 100, ButtonHeight), "Memory Game")){
+		if (GUI.Button(Rect(150, 0, 100, ButtonHeight), "The Grove")){
 			Application.LoadLevel("memoryGameSceneT");
 		}
-		if (GUI.Button(Rect(250, 0, 100, ButtonHeight), "Bowling")){
+		if (GUI.Button(Rect(250, 0, 100, ButtonHeight), "Bowling Alley")){
 			//print("Go to Missile Command");
 			Application.LoadLevel("bowlinggame");
 		}
-		if (GUI.Button(Rect(350, 0, 100, ButtonHeight), "Jump Game")){
+		if (GUI.Button(Rect(350, 0, 100, ButtonHeight), "Lava Pit")){
 			print("Go to Don't Touch the Water Game");
 			Application.LoadLevel("TempleRunLikeGame");
 		}
-		if (GUI.Button(Rect(450, 0, 100, ButtonHeight), "Creature Shop")){
-			print("Creature Shop");
-		}
-		if (GUI.Button(Rect(550, 0, 100, ButtonHeight), "Combat")){
+		if (GUI.Button(Rect(450, 0, 100, ButtonHeight), "Combat")){
 			//print("Go to Multiplayer");
 			Application.LoadLevel("Combat");
 		}

@@ -135,3 +135,8 @@ function giveCreatureExp(str,dex,intel) {
 	SaveCreatureToDatabase();
 
 }
+function getCreatureLvl()
+{
+	var sum = Strength + Dex + Intellect;
+	return sum;
+}
