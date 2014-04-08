@@ -75,6 +75,7 @@
      <Compile Include="Assets\createPizza.js" />
      <Compile Include="Assets\disappearReappear.js" />
      <Compile Include="Assets\doIAppear.js" />
+     <Compile Include="Assets\doNotRender.js" />
      <Compile Include="Assets\fireballController.js" />
      <Compile Include="Assets\health.js" />
      <Compile Include="Assets\label.js" />
@@ -83,6 +84,7 @@
      <Compile Include="Assets\moveFireball.js" />
      <Compile Include="Assets\moveUpDown.js" />
      <Compile Include="Assets\persistCreatureStats.js" />
+     <Compile Include="Assets\respawnBox.js" />
      <Compile Include="Assets\rotateItem.js" />
      <Compile Include="Assets\shuffleBlocks.js" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
