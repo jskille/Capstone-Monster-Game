@@ -70,6 +70,7 @@ function checkMatch(){
 				Destroy(GameObject.Find("boxText1"));
 				Destroy(GameObject.Find("Box4"));
 				Destroy(GameObject.Find("boxText4"));
+				isComplete++;
 				break;
 			
 			case 2:
@@ -78,6 +79,7 @@ function checkMatch(){
 				Destroy(GameObject.Find("boxText2"));
 				Destroy(GameObject.Find("Box5"));
 				Destroy(GameObject.Find("boxText5"));
+				isComplete++;
 				break;
 						
 			case 3:
@@ -86,6 +88,7 @@ function checkMatch(){
 				Destroy(GameObject.Find("boxText3"));
 				Destroy(GameObject.Find("Box6"));
 				Destroy(GameObject.Find("boxText6"));
+				isComplete++;
 				break;
 				
 			case 7:
@@ -94,6 +97,7 @@ function checkMatch(){
 				Destroy(GameObject.Find("boxText7"));
 				Destroy(GameObject.Find("Box14"));
 				Destroy(GameObject.Find("boxText14"));
+				isComplete++;
 				break;
 				
 			case 8:
@@ -102,6 +106,7 @@ function checkMatch(){
 				Destroy(GameObject.Find("boxText8"));
 				Destroy(GameObject.Find("Box15"));
 				Destroy(GameObject.Find("boxText15"));
+				isComplete++;
 				break;
 				
 			case 9:
@@ -110,6 +115,7 @@ function checkMatch(){
 				Destroy(GameObject.Find("boxText9"));
 				Destroy(GameObject.Find("Box16"));
 				Destroy(GameObject.Find("boxText16"));
+				isComplete++;
 				break;
 			
 			case 10:
@@ -118,6 +124,7 @@ function checkMatch(){
 				Destroy(GameObject.Find("boxText10"));
 				Destroy(GameObject.Find("Box11"));
 				Destroy(GameObject.Find("boxText11"));
+				isComplete++;
 				break;
 				
 			case 12:
@@ -126,6 +133,7 @@ function checkMatch(){
 				Destroy(GameObject.Find("boxText12"));
 				Destroy(GameObject.Find("Box13"));
 				Destroy(GameObject.Find("boxText13"));
+				isComplete++;
 				break;
 		}
 
@@ -151,7 +159,8 @@ function Update () {
 			// Giving Exp and Saving to the Database
 			mySQLthingy.giveCreatureExp(0,0,rewardXP);
 		}
-		
+		//yield WaitForSeconds(1.5);
+		Application.LoadLevel("mainscreen");
 	}	
 	else{
 	reset();
