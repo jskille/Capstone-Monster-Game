@@ -88,6 +88,7 @@
      <Compile Include="Assets\persistCreatureStats.js" />
      <Compile Include="Assets\respawnBox.js" />
      <Compile Include="Assets\rotateItem.js" />
+     <Compile Include="Assets\runXPScript.js" />
      <Compile Include="Assets\shuffleBlocks.js" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\Standard Assets\Projectors\Guidelines.txt" />
