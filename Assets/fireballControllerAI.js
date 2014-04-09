@@ -7,8 +7,8 @@ var direction : float;
 var height : float;
 
 function Start () {
-	source = GameObject.FindWithTag("player");
-	target = GameObject.FindWithTag("enemy");
+	source = GameObject.FindWithTag("enemy");
+	target = GameObject.FindWithTag("player");
 	direction = source.transform.rotation.y;
 	height = source.transform.position.y;
 }
@@ -49,7 +49,7 @@ function OnCollisionEnter(collision : Collision) {
 		Destroy(this.rigidbody);
 		Destroy(this.gameObject);
 	}
-	else if (collision.gameObject.name == "FireballAI(Clone)")
+	else if (collision.gameObject.name == "Fireball(Clone)")
 	{
 		Destroy(this.rigidbody);
 		Destroy(this.gameObject);

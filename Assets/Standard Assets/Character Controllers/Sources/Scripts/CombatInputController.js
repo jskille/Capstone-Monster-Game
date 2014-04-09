@@ -12,7 +12,6 @@ var grounded = true;
 
 var mainScreenCreature : GameObject;
 
-
 public var idleAnimation : AnimationClip;
 public var walkAnimation : AnimationClip;
 public var runAnimation : AnimationClip;
@@ -63,7 +62,6 @@ function Awake () {
 
 // Update is called once per frame
 function Update () {
-	combatAbil.Attack(facingRight);
 	this.transform.position.z = 36.47913;
 	// Get the input vector from kayboard or analog stick
 	var rightDirection : boolean = Input.GetKey("right");
