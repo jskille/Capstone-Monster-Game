@@ -1,4 +1,4 @@
-﻿#pragma strict
+#pragma strict
 
 var boxPosition : int;
 var pointB : Vector3;
@@ -202,6 +202,12 @@ function OnControllerColliderHit (hit : ControllerColliderHit) {
 
 function GiveExp ()
 {
+    var boxText : GameObject = GameObject.Find("totalBoxes");
+	var prevBoxes : int;
+	var totalBoxesString : String[];
+	var object : GameObject;
+	var holdPosition; 
+    
     // Giving Exp and Saving to the Database
     var Strength : int;
     var Dexterity : int;
