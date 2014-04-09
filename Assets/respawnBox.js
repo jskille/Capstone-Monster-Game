@@ -5,11 +5,10 @@ var pointB : Vector3;
 var currentBoxID : GameObject;
 
 function Start () {
-
+    
 	var object : GameObject;
 	var dropRate : int;
 	var dropping : int;
-	//var pointA = transform.position;
 	var waitForXSeconds : int;
 	var xFloat : float;
 	xFloat = 46.39584f;
@@ -20,7 +19,7 @@ function Start () {
 	var prevBoxes : int;
 	var totalBoxesString : String[];
 	
-
+    
 	while(1)
 	{
 		dropping = Random.Range(0, 5);
@@ -35,7 +34,9 @@ function Start () {
 			yield MoveObject(object.transform, holdPosition, pointB, rate);
 			object.transform.position = holdPosition;
 			if(object.renderer.enabled == true)
+            {
 				Application.LoadLevel(0);
+            }
 		}
 		if(dropping == 1)
 		{
@@ -47,7 +48,9 @@ function Start () {
 			yield MoveObject(object.transform, holdPosition, pointB, rate);
 			object.transform.position = holdPosition;
 			if(object.renderer.enabled == true)
-				Application.LoadLevel(0);
+			{
+                Application.LoadLevel(0);
+            }
 		}
 		if(dropping == 2)
 		{
@@ -59,7 +62,9 @@ function Start () {
 			yield MoveObject(object.transform, holdPosition, pointB, rate);
 			object.transform.position = holdPosition;
 			if(object.renderer.enabled == true)
+            {
 				Application.LoadLevel(0);
+            }
 		}
 		if(dropping == 3)
 		{
@@ -71,7 +76,9 @@ function Start () {
 			yield MoveObject(object.transform, holdPosition, pointB, rate);
 			object.transform.position = holdPosition;
 			if(object.renderer.enabled == true)
+            {
 				Application.LoadLevel(0);
+            }
 		}
 		if(dropping == 4)
 		{
@@ -83,10 +90,11 @@ function Start () {
 			yield MoveObject(object.transform, holdPosition, pointB, rate);
 			object.transform.position = holdPosition;
 			if(object.renderer.enabled == true)
+            {
+                
 				Application.LoadLevel(0);
+            }
 		}
-		//waitForXSeconds = Random.Range(2, 5);
-		//yield WaitForSeconds(waitForXSeconds);
 	}
 }
 
@@ -192,16 +200,38 @@ function OnControllerColliderHit (hit : ControllerColliderHit) {
 	}
 }
 
+function GiveExp ()
+{
+    // Giving Exp and Saving to the Database
+    var Strength : int;
+    var Dexterity : int;
+    var Intellect : int;
+    var mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
+    var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);
+    
+    totalBoxesString = (boxText.GetComponent(TextMesh).text).Split(" "[0]);
+    prevBoxes = parseInt(totalBoxesString[1]);
+    
+    Strength = 0;
+    Dexterity = 0;
+    Intellect = 0;
+    
+    Dexterity = prevBoxes * 3;
+    Intellect = prevBoxes * 3;
+    
+    mySQLthingy.giveCreatureExp(Strength,Dexterity,Intellect);
+}
+
 function MoveObject (thisTransform : Transform, startPos : Vector3, endPos : Vector3, time : float) {
     var i = 0.0;
     var rate = 1.0/time;
     while (i < 1.0) {
         i += Time.deltaTime * rate;
         thisTransform.position = Vector3.Lerp(startPos, endPos, i);
-        yield; 
+        yield;
     }
 }
 
 function Update () {
-
+    
 }
