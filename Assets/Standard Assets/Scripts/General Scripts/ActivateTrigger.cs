@@ -55,10 +55,13 @@ public class ActivateTrigger : MonoBehaviour {
 				targetGameObject.active = false;
 				break;
 			case Mode.Teleport:
-				gameObject.transform.position = new Vector3(84.47279f, 7.817987f, 84.89379f);
+				//gameObject.transform.position = new Vector3(84.47279f, 7.817987f, 84.89379f);
 				break;
 			case Mode.TRLGEnd:
-				Application.LoadLevel(0);
+				//public runXPScript jsScript;
+				//runXPScript = this.GetComponent<runxpscript>();
+				//runXPScript.xpScript();
+				//Application.LoadLevel(0);
 				break;
 			}
 		}

@@ -35,6 +35,7 @@ function Start () {
 			object.transform.position = holdPosition;
 			if(object.renderer.enabled == true)
             {
+                GiveExp();
 				Application.LoadLevel(0);
             }
 		}
@@ -49,6 +50,7 @@ function Start () {
 			object.transform.position = holdPosition;
 			if(object.renderer.enabled == true)
 			{
+                GiveExp();
                 Application.LoadLevel(0);
             }
 		}
@@ -63,6 +65,7 @@ function Start () {
 			object.transform.position = holdPosition;
 			if(object.renderer.enabled == true)
             {
+                GiveExp();
 				Application.LoadLevel(0);
             }
 		}
@@ -77,6 +80,7 @@ function Start () {
 			object.transform.position = holdPosition;
 			if(object.renderer.enabled == true)
             {
+                GiveExp();
 				Application.LoadLevel(0);
             }
 		}
@@ -91,7 +95,7 @@ function Start () {
 			object.transform.position = holdPosition;
 			if(object.renderer.enabled == true)
             {
-                
+                GiveExp();
 				Application.LoadLevel(0);
             }
 		}
