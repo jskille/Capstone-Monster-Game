@@ -18,13 +18,22 @@ var currentBoxID : int = 0;
 //number of misses
 @HideInInspector
 var numMisses : int = 0;
+
 //value to signify end of game
+@HideInInspector
 var isComplete : int = 0;
 
+//audio sounds
+var matchedSound : AudioClip;
+var unmatchedSound : AudioClip;
+var goodGame : AudioClip;
+var badGame : AudioClip;
+
 private var baseXP = 10;
+private var breakUpdate;
 
 function Start () {
-
+	breakUpdate = 0;
 }
 
 function OnControllerColliderHit (hit : ControllerColliderHit) {
@@ -63,7 +72,7 @@ function checkMatch(){
 		yield WaitForSeconds(1.5);
 		var mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
 	 	var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);
-	 	
+	 	audio.PlayOneShot(matchedSound);
 	 	// Give 5 intellect per box match
 	 	mySQLthingy.giveCreatureExp(0,0,5);
 		
@@ -143,37 +152,49 @@ function checkMatch(){
 		}
 
 	}
+	else{
+	audio.PlayOneShot(unmatchedSound);
+	}
 }
 
 function Update () {
-	if(isComplete == 8)
+	if(breakUpdate==0)
 	{
-	 var rewardXP = 0;
-	 var mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
-	 var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);	 
-		//Debug.Log("game complete");
-		if(numMisses == 0)
+		if(isComplete == 8)
 		{
-			rewardXP = baseXP * 8;
-			// Giving Exp and Saving to the Database
-			mySQLthingy.giveCreatureExp(0,0,rewardXP);
+	 		var rewardXP = 0;
+	 		var mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
+	 		var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);	 
+			//Debug.Log("game complete");
+			
+			if(numMisses == 0)
+			{
+				rewardXP = baseXP * 8;
+				// Giving Exp and Saving to the Database
+				mySQLthingy.giveCreatureExp(0,0,rewardXP);
+			}
+			else if(numMisses <= 6)
+			{
+				audio.PlayOneShot(goodGame);
+				rewardXP = baseXP * 6;
+				// Giving Exp and Saving to the Database
+				mySQLthingy.giveCreatureExp(0,0,rewardXP);
+			}
+			else if(numMisses > 6 )
+			{
+				if(numMisses > 14)
+				{
+					audio.PlayOneShot(badGame);
+				}
+				rewardXP = baseXP * 3;
+				mySQLthingy.giveCreatureExp(0,0,rewardXP);
+			}		
+			breakUpdate = 1;
+			levelLoad();
+		}	
+		else{
+		reset();
 		}
-		else if(numMisses <= 6)
-		{
-			rewardXP = baseXP * 6;
-			// Giving Exp and Saving to the Database
-			mySQLthingy.giveCreatureExp(0,0,rewardXP);
-		}
-		else if(numMisses > 6 )
-		{
-			rewardXP = baseXP * 3;
-			mySQLthingy.giveCreatureExp(0,0,rewardXP);
-		}
-		//yield WaitForSeconds(1.5);
-		Application.LoadLevel("mainscreen");
-	}	
-	else{
-	reset();
 	}
 }
 
@@ -205,3 +226,8 @@ function reset()
 	}
 }
 
+function levelLoad()
+{
+	yield WaitForSeconds(3.5);
+	Application.LoadLevel("mainscreen");
+}
