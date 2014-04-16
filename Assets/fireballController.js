@@ -24,21 +24,6 @@ function Update () {
 		this.transform.position.x -= 40 * Time.deltaTime;
 		this.transform.position.y = height;
 	}
-	if (Mathf.Abs(source.transform.position.x - this.transform.position.x) > 50)
-	{
-		Destroy(this.rigidbody);
-		Destroy(this.gameObject);
-	}
-	else if(Mathf.Abs(source.transform.position.z - this.transform.position.z) > 50)
-	{
-		Destroy(this.rigidbody);
-		Destroy(this.gameObject);
-	}
-	else if(Mathf.Abs(source.transform.position.y - this.transform.position.y) > 50)
-	{
-		Destroy(this.rigidbody);
-		Destroy(this.gameObject);
-	}
 }
 
 function OnCollisionEnter(collision : Collision) {
@@ -50,6 +35,11 @@ function OnCollisionEnter(collision : Collision) {
 		Destroy(this.gameObject);
 	}
 	else if (collision.gameObject.name == "FireballAI(Clone)")
+	{
+		Destroy(this.rigidbody);
+		Destroy(this.gameObject);
+	}
+	else if (collision.gameObject.name == "Woodfence")
 	{
 		Destroy(this.rigidbody);
 		Destroy(this.gameObject);

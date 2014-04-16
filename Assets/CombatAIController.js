@@ -4,7 +4,8 @@ var AIMeleeCooldown : float;
 var AIFireballCooldown : float;
 var moveDecisionCooldown : float;
 var AIMeleeRange : float;
-var direction;
+var direction : int;
+var shouldJump : boolean;
 var EnemyDead : boolean;
 
 private var Fireball : createFireballAI;
@@ -77,10 +78,12 @@ function Update () {
 		if (opponent.transform.position.x > this.transform.position.x)
 		{
 			direction = faceDirection.Right;
+			this.transform.rotation.y = 0.7071068;
 		}
 		else
 		{
 			direction = faceDirection.Left;
+			this.transform.rotation.y = -0.7071068;
 		}
 		
 		attackAction = CombatAIAction.Idle;
@@ -90,6 +93,7 @@ function Update () {
 		if ((Mathf.Abs(opponent.transform.position.x - this.transform.position.x) >= 10))
 		{
 			var randomNum : int = Random.Range(0.0,4.0);
+			print(randomNum);
 			if (randomNum < 2 && moveDecisionCooldown == 0)
 			{
 				moveAction = CombatAIAction.CloseDistance;
@@ -107,12 +111,12 @@ function Update () {
 		}
 		else if ((Mathf.Abs(opponent.transform.position.x - this.transform.position.x) < 10))
 		{
-			var randomNum1 : int = Random.Range(0.0,4.0);
+			var randomNum1 : int = Random.Range(0.0,5.0);
 			if (randomNum1 < 3 && AIFireballCooldown == 0)
 			{
 				attackAction = CombatAIAction.Fireball;
 			}
-			else if (randomNum1 == 3)
+			else if (randomNum1 < 5)
 			{
 				dodgeAction = CombatAIAction.Dodge;
 			}
@@ -150,7 +154,6 @@ function Update () {
 		
 		if (moveAction == CombatAIAction.CloseDistance)
 		{
-			print("Closing Distance");
 			if (direction == 0)
 			{
 				vertical = 0.3;
@@ -179,7 +182,6 @@ function Update () {
 		}
 		else if(moveAction == CombatAIAction.Retreat)
 		{
-			print("Retreating");
 			if (direction == 0)
 			{
 				vertical = 0.3;
@@ -211,13 +213,25 @@ function Update () {
 		{
 			if (opponent.GetComponent(CombatAbilities).fireballCooldown != 0)
 			{
-				var randomNum3 : int = Random.Range(0,4);
-				if (randomNum3 == 2)
+				var fireball = GameObject.Find("Fireball");
+				if (fireball != null)
+				{
+					if (fireball.transform.position.y < 4)
+					{
+						shouldJump = true;
+					}
+					else
+					{
+						shouldJump = false;
+					}
+				}
+				var randomNum3 : int = Random.Range(0,3);
+				if (randomNum3 == 0 && shouldJump)
 				{
 					motor.inputJump = true;
 					animationComp.CrossFade("jump_pose");
 				}
-				else if (randomNum3 == 3)
+				else if (randomNum3 == 1 && shouldJump)
 				{
 					vertical = 0.3;
 					directionVector = new Vector3(horizontal, vertical, 0);
@@ -225,7 +239,7 @@ function Update () {
 					motor.inputJump = true;
 					animationComp.CrossFade("jump_pose");
 				}
-				else if (randomNum3 == 4)
+				else if (randomNum3 == 2 && shouldJump)
 				{
 					vertical = 0.3;
 					directionVector = new Vector3(horizontal, vertical, 0);
@@ -243,9 +257,11 @@ function Update () {
 		if (AIFireballCooldown > 0)
 		{
 			AIFireballCooldown = AIFireballCooldown - 1 * Time.deltaTime;
+			print("FireballNotReady");
 			if (AIFireballCooldown < 0)
 			{
 				AIFireballCooldown = 0;
+				print("FireballReady");
 			}
 		}
 		if (moveDecisionCooldown > 0)
