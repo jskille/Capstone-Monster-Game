@@ -4,6 +4,7 @@ var meleeCooldown : float;
 var fireballCooldown : float;
 private var Fireball : createFireball;
 private var controller : CombatInputController;
+private var currHealth : health;
 private var opponent : GameObject;
 private var player : GameObject;
 var EnemyDead : boolean;
@@ -13,6 +14,7 @@ function Start () {
 	opponent = GameObject.FindWithTag("enemy");
 	Fireball = GetComponent(createFireball);
 	controller = GetComponent(CombatInputController);
+	currHealth = GetComponent(health);
 	meleeCooldown = 0;
 	fireballCooldown = 0;
 	EnemyDead = false;
@@ -60,6 +62,7 @@ function Update () {
 }
 
 function OnGUI() {
+	GUI.Box(new Rect(Screen.width/2 - 250, 0, 200, 50), "Your Health: " + currHealth.currHealth + " / 100");
 	if (EnemyDead)
 	{
 		GUI.Box(new Rect(Screen.width/2-250, Screen.height/2-250, 500, 500), "YOU WIN!");

@@ -12,6 +12,7 @@ private var Fireball : createFireballAI;
 private var motor : CharacterMotor;
 private var opponent : GameObject;
 private var source : GameObject;
+private var currHealth : health;
 
 var horizontal : float = 0;
 var vertical : float = 0;
@@ -41,6 +42,7 @@ function Start () {
 	opponent = GameObject.FindWithTag("player");
 	source = GameObject.FindWithTag("enemy");
 	Fireball = GetComponent(createFireballAI);
+	currHealth = GetComponent(health);
 	AIFireballCooldown = 3;
 	moveDecisionCooldown = 0;
 	EnemyDead = false;
@@ -277,6 +279,7 @@ function Update () {
 }
 
 function OnGUI() {
+	GUI.Box(new Rect(Screen.width/2 + 50, 0, 200, 50), "Enemy Health: " + currHealth.currHealth + " / 100");
 	if (EnemyDead)
 	{
 		GUI.Box(new Rect(Screen.width/2-250, Screen.height/2-250, 500, 500), "YOU LOSE!");

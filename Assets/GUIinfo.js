@@ -4,6 +4,7 @@ var showPlaces : boolean;
 var creatureActions : boolean;
 var playMenu : boolean;
 var foodMenu : boolean;
+var combatRules : boolean;
 private var AIControl : AIController;
 private var Ball : createBall;
 private var Pizza : createPizza;
@@ -13,6 +14,7 @@ var thirstyOffset : float;
 var ButtonHeight : int = 30;
 
 function Start () {
+	combatRules = false;
 	showPlaces = false;
 	creatureActions = false;
 	playMenu = false;
@@ -49,8 +51,20 @@ function OnGUI() {
 			print("Go to Don't Touch the Water Game");
 			Application.LoadLevel("TempleRunLikeGame");
 		}
-		if (GUI.Button(Rect(450, 0, 100, ButtonHeight), "Combat")){
-			//print("Go to Multiplayer");
+		if (GUI.Button(Rect(450, 0, 100, ButtonHeight), "Arena")){
+			print("Go to Multiplayer");
+			combatRules = true;
+			//Application.LoadLevel("Combat");
+		}
+	}
+	
+	if (combatRules)
+	{
+		if (GUI.Button(Rect(Screen.width/2 - 250, Screen.height/2 - 100, 500, 200),
+			 "The rules of combat are simple.\n\n Press X to use your fireball attack, the left and right" +
+			 " arrows for movement, \nand spacebar to jump. \n\n Kill the enemy before it kills you.\n\n Click this box to"+ 
+			 " continue to the Arena"))
+		{
 			Application.LoadLevel("Combat");
 		}
 	}
