@@ -72,26 +72,17 @@ function Update () {
 	{
 		horizontal += bumpRight;
 		bumpRight *= 2;
-		if (horizontal == 0.1 && !facingRight)
-		{
-			this.transform.RotateAround(this.transform.position, Vector3(0, 1, 0), 180);
-			facingRight = true;;
-		}
 		vertical = 0.3;
 	}
 	else
 	{
 		bumpRight = 0.1;
 	}
+	
 	if (leftDirection)
 	{
 		horizontal += bumpLeft;
 		bumpLeft *= 2;
-		if (horizontal == -0.1 && facingRight)
-		{
-			this.transform.RotateAround(this.transform.position, Vector3(0, 1, 0), 180);
-			facingRight = false;
-		}
 		vertical = 0.3;
 	}
 	else

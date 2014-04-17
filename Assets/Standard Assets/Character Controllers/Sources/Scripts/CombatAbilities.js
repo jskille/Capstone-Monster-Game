@@ -21,7 +21,19 @@ function Start () {
 }
 
 function Update () {
+	if(opponent != null)
+	{
+		if (opponent.transform.position.x > this.transform.position.x)
+		{
+			this.transform.rotation.y = 0.7071068;
+		}
+		else
+		{
+			this.transform.rotation.y = -0.7071068;
+		}
+	}
 	var direction = player.transform.rotation.y;
+	
 	if (Input.GetKey("z") && meleeCooldown == 0)
 	{
 		//Melee
@@ -62,10 +74,14 @@ function Update () {
 }
 
 function OnGUI() {
+	if (fireballCooldown == 0)
+	{
+		GUI.Box(new Rect(Screen.width/2 - 450, 0, 200, 50), "Fireball Ready");
+	}
 	GUI.Box(new Rect(Screen.width/2 - 250, 0, 200, 50), "Your Health: " + currHealth.currHealth + " / 100");
 	if (EnemyDead)
 	{
-		GUI.Box(new Rect(Screen.width/2-250, Screen.height/2-250, 500, 500), "YOU WIN!");
+		GUI.Box(new Rect(Screen.width/2-200, Screen.height/2-200, 400, 400), "YOU WIN!");
 		switchLevel();
 	}
 }

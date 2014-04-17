@@ -259,11 +259,9 @@ function Update () {
 		if (AIFireballCooldown > 0)
 		{
 			AIFireballCooldown = AIFireballCooldown - 1 * Time.deltaTime;
-			print("FireballNotReady");
 			if (AIFireballCooldown < 0)
 			{
 				AIFireballCooldown = 0;
-				print("FireballReady");
 			}
 		}
 		if (moveDecisionCooldown > 0)
