@@ -10,12 +10,13 @@ private var playBonus : float = 3;
 private var foodBonus : float = 20;
 
 // Creature Status (NEEDS) Levels
-private var energy : float = 100;
+private var energy : float = 68;
 private var happyMAX : float = 100;
-private var happyCurrent : float = 100;
+private var happyCurrent : float = 90;
 private var stomachMAX : float = 100;
-private var stomachCurrent : float = 100;
-private var thirstCurrent : float = 100;
+private var stomachCurrent : float = 95;
+private var thirstCurrent : float = 63;
+private var temp : float = 31.3;
 
 // AI Movement Globals
 private var directionFlag = 1;
@@ -27,7 +28,7 @@ var bored : boolean = false;
 
 
 // AI State Logic
-enum AIState { Start, Asleep, Idling, Walking, Running, Sitting, Chasing, Fleeing, HavingLunch, Playing, Disabled };
+enum AIState { Start, Asleep, Idling, Walking, Thristy, Running, Sitting, Chasing, Fleeing, HavingLunch, Playing, Disabled };
 public var CurrentState : AIState;
 //////////////// Functions Start //////////
 function Start () {
@@ -46,6 +47,9 @@ function Update () {
 
 	// Function to check Creature Boundaries
 	CreatureBoundaries();
+	
+	// Status Controller is not affected by user input
+	StatusController();
 		 				
 	// Puts AI on pause			
 	if (Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
@@ -53,8 +57,7 @@ function Update () {
 			
 	// Puts AI on pause during input
 	if (disableAItime == 0){
-	
-		StatusController();
+			
 		AIControlCenter();
 		AIPreformAction();
 														
@@ -76,8 +79,10 @@ function AIControlCenter (){
 				
 				DecisionTimer = timeToNextDecision; //Resets the timer for next decision	
 			/*** AI Logic State Chance ***/
+			// Get Water if Water is low 
+			if (thirstCurrent < 5 ) { CurrentState = AIState.Thristy; }
 			// Idle
-			if (Chance < 20  || energy < 25 ) { CurrentState = AIState.Idling;} 
+			else if (Chance < 20  || energy < 25 ) { CurrentState = AIState.Idling;} 
 			// Walking
 			else if (Chance > 20  && Chance < 60) { CurrentState = AIState.Walking;
 									if ( Chance > 50 ){
@@ -107,20 +112,41 @@ function AIPreformAction () {
 			if (CurrentState == AIState.Idling)	 { ACTION_Idling();}
 			if (CurrentState == AIState.Walking) { ACTION_Move(.5);}			
 			if (CurrentState == AIState.Running) { ACTION_Move(1);}	
-			if (CurrentState == AIState.Playing) { ACTION_PlayWithBall();}			
+			if (CurrentState == AIState.Playing) { ACTION_PlayWithBall();}	
+			if (CurrentState == AIState.Thristy)  { ACTION_AcquireWater(); }		
 							
 }
 function StatusController () {
-
-		if(happyCurrent > 0) happyCurrent -= .35 * Time.deltaTime; else happyCurrent = 0;
+		
+		// Happiness Controller
+		if(happyCurrent > 0) happyCurrent -= .15 * Time.deltaTime; else happyCurrent = 0;
+		if(stomachCurrent < 40) happyCurrent -= .2 * Time.deltaTime;
+		if(thirstCurrent < 30) happyCurrent -= .3 * Time.deltaTime; 
+		
+		
 		if(stomachCurrent > 0) stomachCurrent -= .28 * Time.deltaTime; else stomachCurrent = 0;
+		if(thirstCurrent > 0) thirstCurrent -= .48 * Time.deltaTime; else thirstCurrent = 0;
+		if(energy >= 100) energy = 100;
 		
 		// Creature Energy Level Adjustments
 		if(CurrentState == AIState.Disabled) { if (energy <= 100) energy += 1 * Time.deltaTime; }
-		if(CurrentState == AIState.Idling) { if (energy <= 100) energy += 6 * Time.deltaTime; }
+		if(CurrentState == AIState.Idling) { if (energy <= 100) energy += 7.7 * Time.deltaTime; }
 		if(CurrentState == AIState.Walking) { energy -= 1.5 * Time.deltaTime; }
-		if(CurrentState == AIState.Running) { energy -= 2.5 * Time.deltaTime; }
-		if(CurrentState == AIState.Playing) { energy -= 3 * Time.deltaTime; }
+		if(CurrentState == AIState.Running) { energy -= 2.5 * Time.deltaTime; thirstCurrent -= .12 * Time.deltaTime;}
+		if(CurrentState == AIState.Playing) { energy -= 3 * Time.deltaTime; thirstCurrent -= .18 * Time.deltaTime;}
+		
+		// Creature Thirst Controller
+		if( this.transform.position.x < 210 ) thirstCurrent += 18.48 * Time.deltaTime;
+		
+		// Creature Temperature Controller
+		if (CurrentState != AIState.Disabled) if(DecisionTimer > 135) temp -= .05 * Time.deltaTime; else temp += .05 * Time.deltaTime;
+		if(this.transform.position.x > 1575) temp -= .08 * Time.deltaTime;
+		if(this.transform.position.x < 550 && this.transform.position.x > 214) temp += .08 * Time.deltaTime;
+		if(this.transform.position.x < 214 && temp > 33.3) temp -= .4;
+		if(this.transform.position.x < 1575 && this.transform.position.x > 550) {
+																					if( temp > 31.7) temp -= .05 * Time.deltaTime;
+																					if( temp < 29.8) temp += .05 * Time.deltaTime;
+																				}
 }
 
 function AIChoice (x : float,y : float) {
@@ -145,7 +171,8 @@ function ACTION_PlayWithBall(){
 					if ( me.x > BallLoc.x ) { directionFlag = 2; ACTION_Move(1.2);}}
 		else {				
 					// If Ball does not Exist, Problem!
-					this.transform.rotation.y += 1 * Time.deltaTime;				   
+					//this.transform.rotation.y += 1 * Time.deltaTime;
+					DecisionTimer = 0;				   
 		}
 			
 }
@@ -170,20 +197,20 @@ function ACTION_Move(Speed : float) {
 	motor.inputMoveDirection = directionVector;
 }
 
-function ACTION_AquireWater () {
-
+function ACTION_AcquireWater () {
 	// Find and Drink Water
+	if( thirstCurrent < 82 ){
+		DecisionTimer = 999;
+		
+		if( this.transform.position.x > 208) { directionFlag = 2; ACTION_Move(3); }
+			
+	}	
+	
+	if( thirstCurrent >= 77+(Chance % 12)) DecisionTimer = 0;
+	
 }
 
-// Functions NOT in Use at the moment
-function moveAway()
-{
-	
-}
-function moveToward()
-{
-	
-}
+
 //////////////////////////////NON AI FUNCTIONALITY///////////////////////////////////
 
 // Creature Movement Limiations AI and Controlled
@@ -195,7 +222,7 @@ function CreatureBoundaries () {
 		
 						
 		// AI Movement Bounderies on X
-		if (this.transform.position.x < 200 ) { this.transform.position.x = 200; }
+		if (this.transform.position.x < 200 ) { this.transform.position.x = 200; directionFlag = 1; }
 			
 		
 }
@@ -203,12 +230,14 @@ function CreatureBoundaries () {
 // GUI Functionality
 function OnGUI() {
 				
-			GUI.Box(new Rect(Screen.width-Screen.width/8,10,140,60),"Happiness: "+ Mathf.CeilToInt(happyCurrent) +"/"+happyMAX+
+			GUI.Box(new Rect(Screen.width-Screen.width/8,10,140,90),"Happiness: "+ Mathf.CeilToInt(happyCurrent) +"/"+happyMAX+
 																"\n Stuffed: "+ Mathf.CeilToInt(stomachCurrent) +"/"+stomachMAX+
+																"\n Thrist: "+ Mathf.CeilToInt(thirstCurrent) +"/100"+
+																"\n Temp: "+ temp.ToString("F1") + " ºC" +
 																"\n Energy: "+ Mathf.CeilToInt(energy));	
 			
 			//Debug GUI
-			GUI.Box(new Rect(Screen.width-Screen.width/8,100,140,100),"AI DEBUG "+
+			GUI.Box(new Rect(Screen.width-Screen.width/8,100,140,80),"AI DEBUG "+
 																"\n AIState: "+ CurrentState +
 																"\n LastChoice: "+ Chance +
 																"\n NextChoice: "+ DecisionTimer);		

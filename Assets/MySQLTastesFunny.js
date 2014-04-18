@@ -13,7 +13,7 @@ function Awake () {
 }
 function Start () {
 		CreatureID = 1;
-		CreatureType = 1;
+		CreatureType = "Slime";
 		OwnerID = 1;
 		Strength = 1;
 		Dex = 3;
@@ -29,19 +29,30 @@ var savedText = "";
 var URL = "http://creature.getbeasted.com/GAME"; //change for your URL
 var hash = "TheDudeAbides."; //change your secret code, and remember to change into the PHP file too
      
-private var textrect = Rect ((Screen.width/2)-50, 150, Screen.width/2, Screen.height/2); //just make a GUI object rectangle
+private var textrect = Rect ((Screen.width/2)-50, 150, Screen.width/4, Screen.height/4); //just make a GUI object rectangle
+
+
      
 function OnGUI() {
+	GUI.color = Color.green;
+
+	if(Authed == true){ GUI.Box(new Rect(Screen.width-Screen.width/3,Screen.height-30,320,22),"Type: "+ CreatureType+
+																" Lv.: "+ getCreatureLvl() +
+																" Str: "+ Mathf.CeilToInt(Strength) +
+																" Dex: "+ Mathf.CeilToInt(Dex)+
+																" Int: "+ Mathf.CeilToInt(Intellect));
+																}
 
 	if(Authed == false){
-        GUI.Label( Rect (Screen.width/2, 220, 100, 20), "Email:" ); //text with your nick
-        GUI.Label( Rect (Screen.width/2, 240, 100, 20), "Password:" );
+		GUI.Label( Rect (Screen.width/2+20, 160, 200, 20), "Digital PocketManz"  );
+        GUI.Label( Rect (Screen.width/2, 190, 100, 20), "Email:" ); //text with your nick
+        GUI.Label( Rect (Screen.width/2, 210, 100, 20), "Password:" );
      
-        formNick = GUI.TextField ( Rect ((Screen.width/2)+120, 220, 100, 20), formNick ); //here you will insert the new value to variable formNick
+        formNick = GUI.TextField ( Rect ((Screen.width/2)+120, 190, 100, 20), formNick ); //here you will insert the new value to variable formNick
         //formPassword = GUI.PasswordField ( Rect ((Screen.width/2)+120, 240, 100, 20), formPassword ); //same as above, but for password
-        formPassword =	GUI.PasswordField (Rect ((Screen.width/2)+120, 240, 100, 20), formPassword, "*"[0]);
+        formPassword =	GUI.PasswordField (Rect ((Screen.width/2)+120, 210, 100, 20), formPassword, "*"[0]);
      
-        if ( GUI.Button ( Rect ((Screen.width/2)+50, 280, 100, 40) , "Login" ) ){ //just a button
+        if ( GUI.Button ( Rect ((Screen.width/2)+50, 250, 100, 40) , "Login" ) ){ //just a button
             Login();
         }
         GUI.TextArea( textrect, formText );
@@ -135,8 +146,15 @@ function giveCreatureExp(str,dex,intel) {
 	SaveCreatureToDatabase();
 
 }
+function changeCreatureType(newType){
+	
+	CreatureType = newType;
+	
+	SaveCreatureToDatabase();
+}
 function getCreatureLvl()
 {
 	var sum = Strength + Dex + Intellect;
-	return sum;
+	return sum/100;
 }
+

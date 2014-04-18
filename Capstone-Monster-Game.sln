@@ -5,8 +5,6 @@ Project("{11674D50-E9AE-3DB3-504C-D0B04C40AA0A}") = "Capstone-Monster-Game", "As
 EndProject
 Project("{11674D50-E9AE-3DB3-504C-D0B04C40AA0A}") = "Capstone-Monster-Game", "Assembly-CSharp.csproj", "{B166679C-9733-C5D1-5C07-E35FDDA447B0}"
 EndProject
-Project("{11674D50-E9AE-3DB3-504C-D0B04C40AA0A}") = "Capstone-Monster-Game", "Assembly-CSharp-Editor.csproj", "{EB1DDE0D-4BD8-C8F1-9E25-67A87AB0C6E1}"
-EndProject
 Project("{11674D50-E9AE-3DB3-504C-D0B04C40AA0A}") = "Capstone-Monster-Game", "Assembly-UnityScript-firstpass.unityproj", "{9F92CE33-E8F0-C8A9-98B8-5DD9A24FF976}"
 EndProject
 Project("{11674D50-E9AE-3DB3-504C-D0B04C40AA0A}") = "Capstone-Monster-Game", "Assembly-UnityScript.unityproj", "{36CA4EEE-FB97-484C-40EB-4C4CEC5E46CC}"
@@ -25,10 +23,6 @@ Global
 		{B166679C-9733-C5D1-5C07-E35FDDA447B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B166679C-9733-C5D1-5C07-E35FDDA447B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B166679C-9733-C5D1-5C07-E35FDDA447B0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB1DDE0D-4BD8-C8F1-9E25-67A87AB0C6E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB1DDE0D-4BD8-C8F1-9E25-67A87AB0C6E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB1DDE0D-4BD8-C8F1-9E25-67A87AB0C6E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB1DDE0D-4BD8-C8F1-9E25-67A87AB0C6E1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9F92CE33-E8F0-C8A9-98B8-5DD9A24FF976}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9F92CE33-E8F0-C8A9-98B8-5DD9A24FF976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F92CE33-E8F0-C8A9-98B8-5DD9A24FF976}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,7 +35,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																										GlobalSection(MonoDevelopProperties) = preSolution
+																																																																																																														GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																																																												GlobalSection(MonoDevelopProperties) = preSolution
 =======
