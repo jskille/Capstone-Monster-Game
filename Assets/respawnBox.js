@@ -11,14 +11,18 @@ function Start () {
 	var dropping : int;
 	var waitForXSeconds : int;
 	var xFloat : float;
-	xFloat = 46.39584f;
+	xFloat = 99.61909f;
 	var holdPosition;
 	var rate : int;
 	rate = 4;
 	var boxText : GameObject = GameObject.Find("totalBoxes");
 	var prevBoxes : int;
 	var totalBoxesString : String[];
-	
+	var instructions : GameObject = GameObject.Find("instructions");
+    
+    yield WaitForSeconds(5);
+    
+    instructions.GetComponent(TextMesh).text = null;
     
 	while(1)
 	{
@@ -226,13 +230,40 @@ function GiveExp ()
     Dexterity = 0;
     Intellect = 0;
     
-    Dexterity = prevBoxes * 3;
-    Intellect = prevBoxes * 3;
+    Dexterity = prevBoxes * 4;
+    Intellect = prevBoxes * 4;
     
     mySQLthingy.giveCreatureExp(Strength,Dexterity,Intellect);
 }
 
 function MoveObject (thisTransform : Transform, startPos : Vector3, endPos : Vector3, time : float) {
+
+    var boxText : GameObject = GameObject.Find("totalBoxes");
+	var prevBoxes : int;
+	var totalBoxesString : String[];
+    
+    totalBoxesString = (boxText.GetComponent(TextMesh).text).Split(" "[0]);
+    totalBoxesString = (boxText.GetComponent(TextMesh).text).Split(" "[0]);
+    var boxes : int;
+    boxes = parseInt(totalBoxesString[1]);
+
+    if(boxes >= 8 && boxes < 16)
+    {
+        time = time - 1;
+    }
+    if(boxes >= 16 && boxes < 24)
+    {
+        time = time - 2;
+    }
+    if(boxes >= 24 && time < 32)
+    {
+        time = time - 2.5;
+    }
+    if(boxes >= 32)
+    {
+        time = time - 3;
+    }
+    
     var i = 0.0;
     var rate = 1.0/time;
     while (i < 1.0) {
