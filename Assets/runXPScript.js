@@ -1,4 +1,4 @@
-﻿#pragma strict
+#pragma strict
 
 function Start () {
  
@@ -52,7 +52,7 @@ function OnControllerColliderHit (hit : ControllerColliderHit) {
             }
             mySQLthingy.giveCreatureExp(Strength,Dexterity,Intellect);
             currentBoxID = 0;
-            Application.LoadLevel(0);
+            Application.LoadLevel(1);
         }
     }
     

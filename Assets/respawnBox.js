@@ -40,7 +40,7 @@ function Start () {
 			if(object.renderer.enabled == true)
             {
                 GiveExp();
-				Application.LoadLevel(0);
+				Application.LoadLevel(1);
             }
 		}
 		if(dropping == 1)
@@ -55,7 +55,7 @@ function Start () {
 			if(object.renderer.enabled == true)
 			{
                 GiveExp();
-                Application.LoadLevel(0);
+                Application.LoadLevel(1);
             }
 		}
 		if(dropping == 2)
@@ -70,7 +70,7 @@ function Start () {
 			if(object.renderer.enabled == true)
             {
                 GiveExp();
-				Application.LoadLevel(0);
+				Application.LoadLevel(1);
             }
 		}
 		if(dropping == 3)
@@ -85,7 +85,7 @@ function Start () {
 			if(object.renderer.enabled == true)
             {
                 GiveExp();
-				Application.LoadLevel(0);
+				Application.LoadLevel(1);
             }
 		}
 		if(dropping == 4)
@@ -100,7 +100,7 @@ function Start () {
 			if(object.renderer.enabled == true)
             {
                 GiveExp();
-				Application.LoadLevel(0);
+				Application.LoadLevel(1);
             }
 		}
 	}
