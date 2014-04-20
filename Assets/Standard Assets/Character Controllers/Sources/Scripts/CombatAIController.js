@@ -95,7 +95,6 @@ function Update () {
 		if ((Mathf.Abs(opponent.transform.position.x - this.transform.position.x) >= 10))
 		{
 			var randomNum : int = Random.Range(0.0,4.0);
-			print(randomNum);
 			if (randomNum < 2 && moveDecisionCooldown == 0)
 			{
 				moveAction = CombatAIAction.CloseDistance;
