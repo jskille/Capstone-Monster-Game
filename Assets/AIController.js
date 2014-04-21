@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-private var DecisionTimer = 550;
+private var DecisionTimer = 380;
 var Chance : float = 0;
 private var disableAItime = 0; // Disables AI during input
 private var motor : CharacterMotor;
@@ -31,16 +31,14 @@ var bored : boolean = false;
 
 
 // AI State Logic
-enum AIState { Start, Asleep, Idling, Walking, Thristy, Running, Sitting, Chasing, Fleeing, HavingLunch, Playing, Disabled };
+enum AIState { Start, Asleep, Idling, Walking, Thristy, Running, Playing, Disabled };
 public var CurrentState : AIState;
 //////////////// Functions Start //////////
 function Start () {
 		// Constructor
 		motor = GetComponent(CharacterMotor);
 		CurrentState = AIState.Start;
-		
-
-		
+	
 }
 
 function Update () {
@@ -59,7 +57,7 @@ function Update () {
 		 				
 	// Puts AI on pause			
 	if (Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
-		{	disableAItime = 450; DecisionTimer = 0; CurrentState = AIState.Disabled; }
+		{	disableAItime = 340; DecisionTimer = 0; CurrentState = AIState.Disabled; }
 			
 	// Puts AI on pause during input
 	if (disableAItime == 0){
@@ -79,7 +77,7 @@ function AIControlCenter (){
 				// AI Makes a Choice//
 				//////////////////////
 				// Decides how long til the cube has to make a new choice
-				var timeToNextDecision = AIChoice(220,400);								
+				var timeToNextDecision = AIChoice(160,330);								
 				// Decides what the cube will do next
 				Chance = AIChoice(1,100);
 				
@@ -105,8 +103,7 @@ function AIControlCenter (){
 										}
 			// Playing with Ball (Batteries required)
 			else if (Chance > 80 || happyCurrent < 20) { CurrentState = AIState.Playing;}
-							
-
+			
 			}
 													
 		
@@ -119,7 +116,7 @@ function AIPreformAction () {
 			if (CurrentState == AIState.Walking) { ACTION_Move(.5);}			
 			if (CurrentState == AIState.Running) { ACTION_Move(1);}	
 			if (CurrentState == AIState.Playing) { ACTION_PlayWithBall();}	
-			if (CurrentState == AIState.Thristy)  { ACTION_AcquireWater(); }		
+			if (CurrentState == AIState.Thristy) { ACTION_AcquireWater();}		
 							
 }
 function StatusController () {
@@ -135,20 +132,20 @@ function StatusController () {
 		if(energy >= 100) energy = 100;
 		
 		// Creature Energy Level Adjustments
-		if(CurrentState == AIState.Disabled) { if (energy <= 100) energy += 1 * Time.deltaTime; }
-		if(CurrentState == AIState.Idling) { if (energy <= 100) energy += 7.7 * Time.deltaTime; }
+		if(CurrentState == AIState.Disabled) { if (energy < 100) energy += 1 * Time.deltaTime; }
+		if(CurrentState == AIState.Idling) { if (energy < 100) energy += 11.3 * Time.deltaTime; }
 		if(CurrentState == AIState.Walking) { energy -= 1.5 * Time.deltaTime; }
 		if(CurrentState == AIState.Running) { energy -= 2.5 * Time.deltaTime; thirstCurrent -= .12 * Time.deltaTime;}
 		if(CurrentState == AIState.Playing) { energy -= 3 * Time.deltaTime; thirstCurrent -= .18 * Time.deltaTime;}
 		
 		// Creature Thirst Controller
-		if( this.transform.position.x < 210 ) thirstCurrent += 18.48 * Time.deltaTime;
+		if( this.transform.position.x < 210 && thirstCurrent < 99 ) thirstCurrent += 16.48 * Time.deltaTime;
 		
 		// Creature Temperature Controller
-		if (CurrentState != AIState.Disabled) if(DecisionTimer > 135) temp -= .05 * Time.deltaTime; else temp += .05 * Time.deltaTime;
-		if(this.transform.position.x > 1575) temp -= .08 * Time.deltaTime;
-		if(this.transform.position.x < 550 && this.transform.position.x > 214) temp += .08 * Time.deltaTime;
-		if(this.transform.position.x < 214 && temp > 33.3) temp -= .4;
+		if (CurrentState != AIState.Disabled) if(DecisionTimer > 125) temp -= .05 * Time.deltaTime; else temp += .05 * Time.deltaTime;
+		if(this.transform.position.x > 1575) temp -= .11 * Time.deltaTime;
+		if(this.transform.position.x < 550 && this.transform.position.x > 214) temp += .11 * Time.deltaTime;
+		if(this.transform.position.x < 214 && temp > 33.3) temp -= .6;
 		if(this.transform.position.x < 1575 && this.transform.position.x > 550) {
 																					if( temp > 31.7) temp -= .05 * Time.deltaTime;
 																					if( temp < 29.8) temp += .05 * Time.deltaTime;
@@ -243,10 +240,10 @@ function OnGUI() {
 																"\n Energy: "+ Mathf.CeilToInt(energy));	
 			
 			//Debug GUI
-			GUI.Box(new Rect(Screen.width-Screen.width/8,100,140,80),"AI DEBUG "+
-																"\n AIState: "+ CurrentState +
-																"\n LastChoice: "+ Chance +
-																"\n NextChoice: "+ DecisionTimer);		
+			GUI.Box(new Rect(Screen.width-Screen.width/8,100,140,40),"Creature is "+
+																"\n "+ CurrentState
+																);//"\n LastChoice: "+ Chance +
+																  //"\n NextChoice: "+ DecisionTimer);		
 }
 
 function EvolutionCheck() {
@@ -256,7 +253,7 @@ function EvolutionCheck() {
 			
 		var level = mySQLthingy.getCreatureLvl();
 		
-		if(level > 5 && evolveFlag == 0) {
+		if(level > 5 && evolveFlag == 0 && mySQLthingy.getCreatureType() == 1) {
 				
 				//Debug.Log("Level is > 5");
 				if( mySQLthingy.highestStat() == 1){
@@ -277,6 +274,13 @@ function EvolutionCheck() {
 				}
 			
 			if(mySQLthingy.highestStat() != 0) evolveFlag  = 1;	
+		}
+		
+		if(level > 5 && evolveFlag == 0){
+				
+				if (mySQLthingy.getCreatureType() == 2) transform.renderer.material.color = Color.red;
+				if (mySQLthingy.getCreatureType() == 4) transform.renderer.material.color = Color.green;
+				if (mySQLthingy.getCreatureType() == 3) transform.renderer.material.color = Color.blue;
 		}
 		
 
@@ -318,6 +322,6 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
    		Destroy(hit.gameObject);
    		
    		// Giving Exp and Saving to the Database
-		mySQLthingy.giveCreatureExp(1,1,1);
+		mySQLthingy.giveCreatureExp(1,2,3);
    	}
 }

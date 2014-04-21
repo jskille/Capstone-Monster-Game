@@ -30,7 +30,7 @@ var savedText = "";
 var URL = "http://creature.getbeasted.com/GAME"; //change for your URL
 var hash = "TheDudeAbides."; //change your secret code, and remember to change into the PHP file too
      
-private var textrect = Rect ((Screen.width/2)-50, 150, Screen.width/4, Screen.height/4); //just make a GUI object rectangle
+private var textrect = Rect ((Screen.width/2)-100, 150, Screen.width/4, Screen.height/4); //just make a GUI object rectangle
 
 
      
@@ -46,15 +46,15 @@ function OnGUI() {
 																}
 
 	if(Authed == false){
-		GUI.Label( Rect (Screen.width/2+20, 160, 200, 20), "Digital PocketManz"  );
-        GUI.Label( Rect (Screen.width/2, 190, 100, 20), "Email:" ); //text with your nick
-        GUI.Label( Rect (Screen.width/2, 210, 100, 20), "Password:" );
+		GUI.Label( Rect (Screen.width/2, 160, 200, 20), "Creature Evolution"  );
+        GUI.Label( Rect (Screen.width/2-50, 190, 100, 20), "Email:" ); //text with your nick
+        GUI.Label( Rect (Screen.width/2-50, 210, 100, 20), "Password:" );
      
-        formNick = GUI.TextField ( Rect ((Screen.width/2)+120, 190, 100, 20), formNick ); //here you will insert the new value to variable formNick
+        formNick = GUI.TextField ( Rect ((Screen.width/2)+30, 190, 100, 20), formNick ); //here you will insert the new value to variable formNick
         //formPassword = GUI.PasswordField ( Rect ((Screen.width/2)+120, 240, 100, 20), formPassword ); //same as above, but for password
-        formPassword =	GUI.PasswordField (Rect ((Screen.width/2)+120, 210, 100, 20), formPassword, "*"[0]);
+        formPassword =	GUI.PasswordField (Rect ((Screen.width/2)+30, 210, 100, 20), formPassword, "*"[0]);
      
-        if ( GUI.Button ( Rect ((Screen.width/2)+50, 250, 100, 40) , "Login" ) ){ //just a button
+        if ( GUI.Button ( Rect ((Screen.width/2), 250, 100, 40) , "Login" ) ){ //just a button
             Login();
         }
         GUI.TextArea( textrect, formText );
@@ -83,8 +83,9 @@ function Login() {
 			            DownloadCreatureData(parsedText);
 			            //SaveCreatureToDatabase();
 			            Authed = true;
-			            yield WaitForSeconds(2); 	
-			            Authed = true;			
+			            //yield WaitForSeconds(2); 	
+			            //Authed = true;		
+			            Application.LoadLevel("mainscreen");	
 			            //Destroy(this);
 		            }else{
 			// If Login BAD
@@ -157,6 +158,19 @@ function changeCreatureType(newType){
 	
 	SaveCreatureToDatabase();
 }
+
+function getCreatureType () {
+
+	
+	if(CreatureType == "Slime") return 1;
+	else if(CreatureType == "Manta") return 3;
+	else if(CreatureType == "Bear") return 2;
+	else if(CreatureType == "Rabbit") return 4;
+	
+
+}
+
+
 function getCreatureLvl()
 {
 	var sum = Strength + Dex + Intellect;
