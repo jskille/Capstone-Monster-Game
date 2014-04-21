@@ -48,7 +48,7 @@ function OnGUI() {
 			Application.LoadLevel("bowlinggame");
 		}
 		if (GUI.Button(Rect(350, 0, 100, ButtonHeight), "Lava Pit")){
-			print("Go to Don't Touch the Water Game");
+			//print("Go to Don't Touch the Water Game");
 			Application.LoadLevel("TempleRunLikeGame");
 		}
 		if (GUI.Button(Rect(450, 0, 100, ButtonHeight), "Arena")){
@@ -56,6 +56,10 @@ function OnGUI() {
 			combatRules = true;
 			//Application.LoadLevel("Combat");
 		}
+        if (GUI.Button(Rect(550, 0, 100, ButtonHeight), "The Dunes")){
+            Application.LoadLevel("boxCatchGame");
+            //boxcatchgame.
+        }
 	}
 	
 	if (combatRules)
