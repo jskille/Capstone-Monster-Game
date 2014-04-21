@@ -20,11 +20,14 @@ private var temp : float = 31.3;
 
 // AI Movement Globals
 private var directionFlag = 1;
+private var evolveFlag = 0;
 
 //Statuses
 var hungry : boolean = false;
 var thirsty : boolean = false;
 var bored : boolean = false;
+
+
 
 
 // AI State Logic
@@ -36,6 +39,7 @@ function Start () {
 		motor = GetComponent(CharacterMotor);
 		CurrentState = AIState.Start;
 		
+
 		
 }
 
@@ -50,6 +54,8 @@ function Update () {
 	
 	// Status Controller is not affected by user input
 	StatusController();
+	
+	EvolutionCheck();
 		 				
 	// Puts AI on pause			
 	if (Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
@@ -243,6 +249,40 @@ function OnGUI() {
 																"\n NextChoice: "+ DecisionTimer);		
 }
 
+function EvolutionCheck() {
+
+		var mainScreenCreature = GameObject.FindGameObjectWithTag("persist");
+		var mySQLthingy = mainScreenCreature.GetComponent(MySQLTastesFunny);
+			
+		var level = mySQLthingy.getCreatureLvl();
+		
+		if(level > 5 && evolveFlag == 0) {
+				
+				//Debug.Log("Level is > 5");
+				if( mySQLthingy.highestStat() == 1){
+					//Debug.Log("Str is highest - EVOLVE");
+					 mySQLthingy.changeCreatureType("Bear");
+					transform.renderer.material.color = Color.red;
+				
+				} else if ( mySQLthingy.highestStat() == 2){
+					//Debug.Log("Dex is highest - EVOLVE");
+					mySQLthingy.changeCreatureType("Rabbit");
+					transform.renderer.material.color = Color.green;
+				
+				} else if( mySQLthingy.highestStat() == 3){
+					//Debug.Log("Int is highest - EVOLVE");
+					mySQLthingy.changeCreatureType("Manta");
+					transform.renderer.material.color = Color.blue;
+				
+				}
+			
+			if(mySQLthingy.highestStat() != 0) evolveFlag  = 1;	
+		}
+		
+
+
+}
+
 //Happiness Increase
 function OnControllerColliderHit (hit : ControllerColliderHit)
 {
@@ -263,7 +303,7 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
    		playBonus = 2;
    		
    		// Giving Exp and Saving to the Database
-		mySQLthingy.giveCreatureExp(1,1,0);
+		mySQLthingy.giveCreatureExp(2,1,0);
 
    
    	}
@@ -278,6 +318,6 @@ function OnControllerColliderHit (hit : ControllerColliderHit)
    		Destroy(hit.gameObject);
    		
    		// Giving Exp and Saving to the Database
-		mySQLthingy.giveCreatureExp(1,1,2);
+		mySQLthingy.giveCreatureExp(1,1,1);
    	}
 }

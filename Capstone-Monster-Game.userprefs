@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\AIController.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\BallCatch.js">
     <Files>
-      <File FileName="Assets\AIController.js" Line="116" Column="53" />
-      <File FileName="Assets\MySQLTastesFunny.js" Line="26" Column="84" />
-      <File FileName="Assets\GUIinfo.js" Line="74" Column="41" />
+      <File FileName="Assets\AIController.js" Line="269" Column="44" />
+      <File FileName="Assets\BallCatch.js" Line="108" Column="10" />
+      <File FileName="Assets\MySQLTastesFunny.js" Line="154" Column="28" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -58,6 +58,7 @@ function Update () {
 	        		pinsUp++;
 	        		}
 	        }
+	        Debug.Log("BSET:" + bowlingSet);
 	        
 	        var nPins = 10 - pinsUp;
 	        
@@ -82,22 +83,17 @@ function Update () {
 	        
 	        TotalPinCount += 10 - pinsUp;
         	// If Strike Reset
-       		if(bowlingSet == 1 && pinsUp == 0) bowlingSet = 2;
+       		if(pinsUp == 0) { bowlingSet = 2; }
         
-			if(bowlingSet == 2){			
+        	Debug.Log("BSET:" + bowlingSet);
+			if(bowlingSet == 2 || BallCount == 2){			
 
 					frame++;
 					bowlingSet = 0;
 					BallCount = 0;
 
 				// Resets the Pins!
-				for(i=0; i<pins.Length; i++){
-	                pins[i].transform.position = pinLoc[i];
-	                pins[i].transform.up = Vector3.up;
-	                pins[i].rigidbody.velocity = Vector3.zero;
-	                pins[i].rigidbody.angularVelocity = Vector3.zero;
-	                PinCount = 0;
-					}
+				resetpins();
 				}
 			}
 			
@@ -106,6 +102,17 @@ function Update () {
 function OnTriggerEnter()
 {
 	BowlStart = Time.time;
+}
+function resetpins() {
+
+	for(var i=0; i<pins.Length; i++){
+	                pins[i].transform.position = pinLoc[i];
+	                pins[i].transform.up = Vector3.up;
+	                pins[i].rigidbody.velocity = Vector3.zero;
+	                pins[i].rigidbody.angularVelocity = Vector3.zero;
+	                PinCount = 0;
+					}
+
 }
 
 function OnTriggerExit (other : Collider) {
@@ -122,9 +129,7 @@ function OnTriggerExit (other : Collider) {
 function OnGUI(){
 
 	GUI.Label (Rect (50, 330, 100, 80),  s);
-    GUI.Label (Rect (50, 70, 100, 80),  "Frame "+ frame +
-    									"\nSet: "+ bowlingSet +"/2"+
-    									"\nPins: "+ PinCount +"/10"+
+    GUI.Label (Rect (50, 70, 100, 80),  "\nPins: "+ PinCount +"/10"+
     									"\nScore: " + TotalPinCount);
     if(PinCount == 10 && bowlingSet == 2) GUI.Label (Rect (50, 150, 100, 20), "STRIKE!!!");
     if(PinCount == 10 && bowlingSet == 3) GUI.Label (Rect (50, 150, 100, 20), "Spare!!");

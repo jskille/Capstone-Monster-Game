@@ -6,6 +6,7 @@ private var OwnerID;
 private var Strength; 
 private var Dex;
 private var Intellect;
+private var CreatureName : String;
 
 
 function Awake () {
@@ -35,8 +36,9 @@ private var textrect = Rect ((Screen.width/2)-50, 150, Screen.width/4, Screen.he
      
 function OnGUI() {
 	GUI.color = Color.green;
+	
 
-	if(Authed == true){ GUI.Box(new Rect(Screen.width-Screen.width/3,Screen.height-30,320,22),"Type: "+ CreatureType+
+	if(Authed == true){ GUI.Box(new Rect(Screen.width-Screen.width/2,Screen.height-30,350+(CreatureName.Length*2),22),CreatureName+" "+ CreatureType+
 																" Lv.: "+ getCreatureLvl() +
 																" Str: "+ Mathf.CeilToInt(Strength) +
 																" Dex: "+ Mathf.CeilToInt(Dex)+
@@ -103,7 +105,9 @@ function DownloadCreatureData (parsedText) {
 		Strength = parseInt(parsedText[4]);
 		Dex = parseInt(parsedText[5]);
 		Intellect = parseInt(parsedText[6]);
+		CreatureName = parsedText[7];
 		
+		/*
 		Debug.Log("Creature Stats Download Start");
 		Debug.Log("cID:" + CreatureID);
 		Debug.Log("cType:" + CreatureType);
@@ -112,6 +116,7 @@ function DownloadCreatureData (parsedText) {
 		Debug.Log("cDex:" + Dex);
 		Debug.Log("Intellect:" + Intellect);
 		Debug.Log("Creature Stats Download End");
+		*/
 }
 
 function SaveCreatureToDatabase()
@@ -141,7 +146,7 @@ function giveCreatureExp(str,dex,intel) {
 	Strength += str;
 	Dex += dex;
 	Intellect += intel;
-	Debug.Log("Creature "+CreatureID+" updated to "+Strength+","+Dex+","+Intellect);
+	//Debug.Log("Creature "+CreatureID+" updated to "+Strength+","+Dex+","+Intellect);
 	
 	SaveCreatureToDatabase();
 
@@ -156,5 +161,14 @@ function getCreatureLvl()
 {
 	var sum = Strength + Dex + Intellect;
 	return sum/100;
+}
+function highestStat ()
+{
+
+	if( Strength > Dex && Strength > Intellect ) return 1;
+	else if( Dex > Strength && Dex > Intellect ) return 2;
+	else if( Intellect > Dex && Intellect > Strength  ) return 3;
+	else return 0;
+
 }
 
