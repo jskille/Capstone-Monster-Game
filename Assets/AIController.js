@@ -12,10 +12,10 @@ private var foodBonus : float = 20;
 // Creature Status (NEEDS) Levels
 private var energy : float = 68;
 private var happyMAX : float = 100;
-private var happyCurrent : float = 90;
+private var happyCurrent : float = 91;
 private var stomachMAX : float = 100;
 private var stomachCurrent : float = 95;
-private var thirstCurrent : float = 63;
+private var thirstCurrent : float = 53;
 private var temp : float = 31.3;
 
 // AI Movement Globals
@@ -23,6 +23,7 @@ private var directionFlag = 1;
 private var evolveFlag = 0;
 
 //Statuses
+var happinessString;
 var hungry : boolean = false;
 var thirsty : boolean = false;
 var bored : boolean = false;
@@ -31,7 +32,7 @@ var bored : boolean = false;
 
 
 // AI State Logic
-enum AIState { Start, Asleep, Idling, Walking, Thristy, Running, Playing, Disabled };
+enum AIState { Start, Asleep, Idling, Walking, Thristy, Running, Playing, PlayerControlled };
 public var CurrentState : AIState;
 //////////////// Functions Start //////////
 function Start () {
@@ -57,7 +58,7 @@ function Update () {
 		 				
 	// Puts AI on pause			
 	if (Input.anyKey && !Input.GetMouseButton(0) && !Input.GetMouseButton(1))
-		{	disableAItime = 340; DecisionTimer = 0; CurrentState = AIState.Disabled; }
+		{	disableAItime = 320; DecisionTimer = 0; CurrentState = AIState.PlayerControlled; }
 			
 	// Puts AI on pause during input
 	if (disableAItime == 0){
@@ -77,7 +78,7 @@ function AIControlCenter (){
 				// AI Makes a Choice//
 				//////////////////////
 				// Decides how long til the cube has to make a new choice
-				var timeToNextDecision = AIChoice(160,330);								
+				var timeToNextDecision = AIChoice(150,320);								
 				// Decides what the cube will do next
 				Chance = AIChoice(1,100);
 				
@@ -86,17 +87,17 @@ function AIControlCenter (){
 			// Get Water if Water is low 
 			if (thirstCurrent < 5 ) { CurrentState = AIState.Thristy; }
 			// Idle
-			else if (Chance < 20  || energy < 25 ) { CurrentState = AIState.Idling;} 
+			else if (Chance < 15  || energy < 10 ) { CurrentState = AIState.Idling;} 
 			// Walking
-			else if (Chance > 20  && Chance < 60) { CurrentState = AIState.Walking;
-									if ( Chance > 50 ){
+			else if (Chance > 15  && Chance < 50) { CurrentState = AIState.Walking;
+									if ( Chance > 40 ){
 											if(directionFlag == 1) directionFlag = 2;
 												else directionFlag = 1;
 										} 
 								}
 			// Running
-			else if (Chance > 60 && Chance < 80) { CurrentState = AIState.Running; 
-									if ( Chance > 70 ){
+			else if (Chance > 50 && Chance < 80) { CurrentState = AIState.Running; 
+									if ( Chance > 65 ){
 													if(directionFlag == 1) directionFlag = 2;
 														else directionFlag = 1;
 												} 
@@ -113,8 +114,8 @@ function AIControlCenter (){
 function AIPreformAction () {
 			/*** AI Logic Action ***/
 			if (CurrentState == AIState.Idling)	 { ACTION_Idling();}
-			if (CurrentState == AIState.Walking) { ACTION_Move(.5);}			
-			if (CurrentState == AIState.Running) { ACTION_Move(1);}	
+			if (CurrentState == AIState.Walking) { ACTION_Move(1);}			
+			if (CurrentState == AIState.Running) { ACTION_Move(1.7);}	
 			if (CurrentState == AIState.Playing) { ACTION_PlayWithBall();}	
 			if (CurrentState == AIState.Thristy) { ACTION_AcquireWater();}		
 							
@@ -122,9 +123,21 @@ function AIPreformAction () {
 function StatusController () {
 		
 		// Happiness Controller
-		if(happyCurrent > 0) happyCurrent -= .15 * Time.deltaTime; else happyCurrent = 0;
+		if(happyCurrent > 0) happyCurrent -= .3 * Time.deltaTime; else happyCurrent = 0;
 		if(stomachCurrent < 40) happyCurrent -= .2 * Time.deltaTime;
 		if(thirstCurrent < 30) happyCurrent -= .3 * Time.deltaTime; 
+		if(happyCurrent > 90) happinessString = "Loved!";
+			else if(happyCurrent > 87) happinessString = "Content";
+			else if(happyCurrent > 84) happinessString = "Accepted";
+			else if(happyCurrent > 81) happinessString = "Blissful";
+			else if(happyCurrent > 77) happinessString = "Happy";
+			else if(happyCurrent > 60) happinessString = "Calm";
+			else if(happyCurrent > 55) happinessString = "Bored";
+			else if(happyCurrent > 50) happinessString = "Apathetic";
+			else if(happyCurrent > 40) happinessString = "Melancholy";
+			else if(happyCurrent > 30) happinessString = "Annoyed";
+			else if(happyCurrent > 20) happinessString = "Sad";
+			else if(happyCurrent > 20) happinessString = "Depressed";
 		
 		
 		if(stomachCurrent > 0) stomachCurrent -= .28 * Time.deltaTime; else stomachCurrent = 0;
@@ -132,7 +145,7 @@ function StatusController () {
 		if(energy >= 100) energy = 100;
 		
 		// Creature Energy Level Adjustments
-		if(CurrentState == AIState.Disabled) { if (energy < 100) energy += 1 * Time.deltaTime; }
+		if(CurrentState == AIState.PlayerControlled) { if (energy < 100) energy += 1 * Time.deltaTime; }
 		if(CurrentState == AIState.Idling) { if (energy < 100) energy += 11.3 * Time.deltaTime; }
 		if(CurrentState == AIState.Walking) { energy -= 1.5 * Time.deltaTime; }
 		if(CurrentState == AIState.Running) { energy -= 2.5 * Time.deltaTime; thirstCurrent -= .12 * Time.deltaTime;}
@@ -142,7 +155,7 @@ function StatusController () {
 		if( this.transform.position.x < 210 && thirstCurrent < 99 ) thirstCurrent += 16.48 * Time.deltaTime;
 		
 		// Creature Temperature Controller
-		if (CurrentState != AIState.Disabled) if(DecisionTimer > 125) temp -= .05 * Time.deltaTime; else temp += .05 * Time.deltaTime;
+		if (CurrentState != AIState.PlayerControlled) if(DecisionTimer > 115) temp -= .05 * Time.deltaTime; else temp += .05 * Time.deltaTime;
 		if(this.transform.position.x > 1575) temp -= .11 * Time.deltaTime;
 		if(this.transform.position.x < 550 && this.transform.position.x > 214) temp += .11 * Time.deltaTime;
 		if(this.transform.position.x < 214 && temp > 33.3) temp -= .6;
@@ -170,8 +183,8 @@ function ACTION_PlayWithBall(){
 		
 		if(Ball != null){
 					// If Ball Exists, Go play with it
-					if ( me.x < BallLoc.x ) { directionFlag = 1; ACTION_Move(1.2);}
-					if ( me.x > BallLoc.x ) { directionFlag = 2; ACTION_Move(1.2);}}
+					if ( me.x < BallLoc.x ) { directionFlag = 1; ACTION_Move(1.6);}
+					if ( me.x > BallLoc.x ) { directionFlag = 2; ACTION_Move(1.6);}}
 		else {				
 					// If Ball does not Exist, Problem!
 					//this.transform.rotation.y += 1 * Time.deltaTime;
@@ -202,10 +215,10 @@ function ACTION_Move(Speed : float) {
 
 function ACTION_AcquireWater () {
 	// Find and Drink Water
-	if( thirstCurrent < 82 ){
+	if( thirstCurrent < 72 ){
 		DecisionTimer = 999;
 		
-		if( this.transform.position.x > 208) { directionFlag = 2; ACTION_Move(3); }
+		if( this.transform.position.x > 208) { directionFlag = 2; ACTION_Move(3.2); }
 			
 	}	
 	
@@ -232,8 +245,8 @@ function CreatureBoundaries () {
 
 // GUI Functionality
 function OnGUI() {
-				
-			GUI.Box(new Rect(Screen.width-Screen.width/8,10,140,90),"Happiness: "+ Mathf.CeilToInt(happyCurrent) +"/"+happyMAX+
+			
+			GUI.Box(new Rect(Screen.width-Screen.width/8,10,140,90),"Mood: "+ happinessString +
 																"\n Stuffed: "+ Mathf.CeilToInt(stomachCurrent) +"/"+stomachMAX+
 																"\n Thrist: "+ Mathf.CeilToInt(thirstCurrent) +"/100"+
 																"\n Temp: "+ temp.ToString("F1") + " ºC" +
