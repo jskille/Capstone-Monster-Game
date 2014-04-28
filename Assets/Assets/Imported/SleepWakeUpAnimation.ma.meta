@@ -1,0 +1,184 @@
+fileFormatVersion: 2
+guid: b835701fd8d37aa4899b2c9ffb50a86b
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: BodyJoint
+    100002: Eyelids
+    100004: Eyes
+    100006: imagePlane1
+    100008: imagePlane2
+    100010: joint10
+    100012: joint11
+    100014: joint12
+    100016: joint13
+    100018: joint14
+    100020: joint15
+    100022: joint16
+    100024: joint17
+    100026: joint18
+    100028: joint19
+    100030: joint2
+    100032: joint20
+    100034: joint21
+    100036: joint22
+    100038: joint23
+    100040: joint24
+    100042: joint25
+    100044: joint26
+    100046: joint27
+    100048: joint28
+    100050: joint29
+    100052: joint3
+    100054: joint3 1
+    100056: joint3 2
+    100058: joint30
+    100060: joint31
+    100062: joint32
+    100064: joint33
+    100066: joint34
+    100068: joint35
+    100070: joint36
+    100072: joint38
+    100074: joint39
+    100076: joint4
+    100078: joint40
+    100080: joint41
+    100082: joint42
+    100084: joint43
+    100086: joint44
+    100088: joint45
+    100090: joint46
+    100092: joint47
+    100094: joint8
+    100096: joint9
+    100098: LowerLip
+    100100: //RootNode
+    100102: SlimeBody
+    100104: SlimeEyeL
+    100106: SlimeEyeLidL
+    100108: SlimeEyeLidR
+    100110: SlimeEyeR
+    100112: SlimeModel
+    100114: SlimeTongue
+    100116: TongueJoint
+    100118: UpperLipGroup
+    400000: BodyJoint
+    400002: Eyelids
+    400004: Eyes
+    400006: imagePlane1
+    400008: imagePlane2
+    400010: joint10
+    400012: joint11
+    400014: joint12
+    400016: joint13
+    400018: joint14
+    400020: joint15
+    400022: joint16
+    400024: joint17
+    400026: joint18
+    400028: joint19
+    400030: joint2
+    400032: joint20
+    400034: joint21
+    400036: joint22
+    400038: joint23
+    400040: joint24
+    400042: joint25
+    400044: joint26
+    400046: joint27
+    400048: joint28
+    400050: joint29
+    400052: joint3
+    400054: joint3 1
+    400056: joint3 2
+    400058: joint30
+    400060: joint31
+    400062: joint32
+    400064: joint33
+    400066: joint34
+    400068: joint35
+    400070: joint36
+    400072: joint38
+    400074: joint39
+    400076: joint4
+    400078: joint40
+    400080: joint41
+    400082: joint42
+    400084: joint43
+    400086: joint44
+    400088: joint45
+    400090: joint46
+    400092: joint47
+    400094: joint8
+    400096: joint9
+    400098: LowerLip
+    400100: //RootNode
+    400102: SlimeBody
+    400104: SlimeEyeL
+    400106: SlimeEyeLidL
+    400108: SlimeEyeLidR
+    400110: SlimeEyeR
+    400112: SlimeModel
+    400114: SlimeTongue
+    400116: TongueJoint
+    400118: UpperLipGroup
+    4300000: SlimeBody
+    4300002: SlimeTongue
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: SlimeBody
+    13700002: SlimeTongue
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
