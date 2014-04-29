@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: afe3ea3869de8d44e8ab3ea53a88079e
 ModelImporter:
-  serializedVersion: 16
+  serializedVersion: 15
   fileIDToRecycleName:
     100000: BodyJoint
     100002: Eyelids
@@ -143,7 +143,153 @@ ModelImporter:
     animationScaleError: .5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 48
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: BodyJoint
+        weight: 1
+      - path: BodyJoint/joint2
+        weight: 1
+      - path: BodyJoint/joint2/joint3 1
+        weight: 1
+      - path: BodyJoint/joint3
+        weight: 1
+      - path: BodyJoint/joint8
+        weight: 1
+      - path: BodyJoint/joint8/joint3 2
+        weight: 1
+      - path: BodyJoint/joint9
+        weight: 1
+      - path: BodyJoint/joint10
+        weight: 1
+      - path: BodyJoint/joint10/joint11
+        weight: 1
+      - path: BodyJoint/joint13
+        weight: 1
+      - path: BodyJoint/joint13/joint14
+        weight: 1
+      - path: BodyJoint/joint16
+        weight: 1
+      - path: BodyJoint/joint16/joint17
+        weight: 1
+      - path: BodyJoint/joint19
+        weight: 1
+      - path: BodyJoint/joint19/joint20
+        weight: 1
+      - path: BodyJoint/joint22
+        weight: 1
+      - path: BodyJoint/joint22/joint23
+        weight: 1
+      - path: BodyJoint/joint25
+        weight: 1
+      - path: BodyJoint/joint25/joint26
+        weight: 1
+      - path: BodyJoint/joint28
+        weight: 1
+      - path: BodyJoint/joint28/joint29
+        weight: 1
+      - path: BodyJoint/joint31
+        weight: 1
+      - path: BodyJoint/joint31/joint32
+        weight: 1
+      - path: BodyJoint/joint31/joint32/joint33
+        weight: 1
+      - path: BodyJoint/joint34
+        weight: 1
+      - path: BodyJoint/joint34/joint35
+        weight: 1
+      - path: BodyJoint/joint34/joint35/joint36
+        weight: 1
+      - path: BodyJoint/joint42
+        weight: 1
+      - path: BodyJoint/joint42/joint43
+        weight: 1
+      - path: BodyJoint/joint42/joint43/joint44
+        weight: 1
+      - path: BodyJoint/joint42/joint43/joint44/joint45
+        weight: 1
+      - path: BodyJoint/LowerLip
+        weight: 1
+      - path: BodyJoint/LowerLip/joint18
+        weight: 1
+      - path: BodyJoint/LowerLip/joint21
+        weight: 1
+      - path: BodyJoint/LowerLip/joint24
+        weight: 1
+      - path: BodyJoint/LowerLip/joint27
+        weight: 1
+      - path: BodyJoint/LowerLip/joint30
+        weight: 1
+      - path: BodyJoint/UpperLipGroup
+        weight: 1
+      - path: BodyJoint/UpperLipGroup/joint4
+        weight: 1
+      - path: BodyJoint/UpperLipGroup/joint12
+        weight: 1
+      - path: BodyJoint/UpperLipGroup/joint15
+        weight: 1
+      - path: BodyJoint/UpperLipGroup/joint46
+        weight: 1
+      - path: BodyJoint/UpperLipGroup/joint47
+        weight: 1
+      - path: imagePlane1
+        weight: 1
+      - path: imagePlane2
+        weight: 1
+      - path: SlimeModel
+        weight: 1
+      - path: SlimeModel/Eyelids
+        weight: 1
+      - path: SlimeModel/Eyelids/SlimeEyeLidL
+        weight: 1
+      - path: SlimeModel/Eyelids/SlimeEyeLidR
+        weight: 1
+      - path: SlimeModel/Eyes
+        weight: 1
+      - path: SlimeModel/Eyes/SlimeEyeL
+        weight: 1
+      - path: SlimeModel/Eyes/SlimeEyeR
+        weight: 1
+      - path: SlimeModel/SlimeBody
+        weight: 1
+      - path: SlimeModel/SlimeTongue
+        weight: 1
+      - path: TongueJoint
+        weight: 1
+      - path: TongueJoint/joint38
+        weight: 1
+      - path: TongueJoint/joint38/joint39
+        weight: 1
+      - path: TongueJoint/joint38/joint39/joint40
+        weight: 1
+      - path: TongueJoint/joint38/joint39/joint40/joint41
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -180,5 +326,4 @@ ModelImporter:
     rootMotionBoneName: 
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
-  additionalBone: 0
   userData: 
